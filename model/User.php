@@ -6,6 +6,7 @@ const ADMINISTRATOR = 2;
 
 class User
 {
+    // Attributes
     private int $id;
     private string $firstname;
     private string $lastname;
@@ -13,10 +14,10 @@ class User
     private string $email;
     private string $passwordHash;
     private string $profilePicturePath;
-    private int $permissions;
+    private int $permissionLevel;
 
     // Constructor
-    public function __construct(int $id, string $firstname, string $lastname, string $birthday, string $email, string $passwordHash, string $profilePicturePath, int $permissions)
+    public function __construct(int $id, string $firstname, string $lastname, string $birthday, string $email, string $passwordHash, string $profilePicturePath, int $permissionLevel)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -25,11 +26,11 @@ class User
         $this->email = $email;
         $this->passwordHash = $passwordHash;
         $this->profilePicturePath = $profilePicturePath;
-        $this->permissions = $permissions;
+        $this->permissionLevel = $permissionLevel;
     }
 
     // Getters & Setters
-    #region Getters&Setters
+    #region Getters & Setters
     public function getId(): int
     {
         return htmlspecialchars($this->id);
@@ -65,16 +66,16 @@ class User
         return htmlspecialchars($this->profilePicturePath);
     }
 
-    public function getPermissions(): int
+    public function getPermissionLevel(): int
     {
-        return htmlspecialchars($this->permissions);
+        return htmlspecialchars($this->permissionLevel);
     }
-    #endregion Getters&Setters
+    #endregion Getters & Setters
 
     // Methods
     /**
      * Fetches all the Users from the database.
-     * @return array An array containing all the Users of the database.
+     * @return array An array containing all the Users stored in the database.
      */
     public static function fetchAllUsers(): array
     {
@@ -142,6 +143,6 @@ class User
     {
         return "[USER: id={$this->getId()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
             ."birthday={$this->getBirthday()} email={$this->getEmail()} passwordHash={$this->getPasswordHash()} "
-            ."profilePicturePath={$this->getProfilePicturePath()} permissions={$this->getPermissions()}]";
+            ."profilePicturePath={$this->getProfilePicturePath()} permissionLevel={$this->getPermissionLevel()}]";
     }
 }
