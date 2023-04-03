@@ -32,42 +32,42 @@ class User
     #region Getters&Setters
     public function getId(): int
     {
-        return $this->id;
+        return htmlspecialchars($this->id);
     }
 
     public function getFirstname(): string
     {
-        return $this->firstname;
+        return htmlspecialchars($this->firstname);
     }
 
     public function getLastname(): string
     {
-        return $this->lastname;
+        return htmlspecialchars($this->lastname);
     }
 
     public function getBirthday(): string
     {
-        return $this->birthday;
+        return htmlspecialchars($this->birthday);
     }
 
     public function getEmail(): string
     {
-        return $this->email;
+        return htmlspecialchars($this->email);
     }
 
     public function getPasswordHash(): string
     {
-        return $this->passwordHash;
+        return htmlspecialchars($this->passwordHash);
     }
 
     public function getProfilePicturePath(): string
     {
-        return $this->profilePicturePath;
+        return htmlspecialchars($this->profilePicturePath);
     }
 
     public function getPermissions(): int
     {
-        return $this->permissions;
+        return htmlspecialchars($this->permissions);
     }
     #endregion Getters&Setters
 
@@ -140,8 +140,8 @@ class User
 
     public function __toString(): string
     {
-        return "[USER: id=$this->id firstname=$this->firstname lastname=$this->lastname birthday=$this->birthday 
-        email=$this->email passwordHash=$this->passwordHash profilePicturePath=$this->profilePicturePath 
-        permissions=$this->permissions] ";
+        return "[USER: id={$this->getId()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
+            ."birthday={$this->getBirthday()} email={$this->getEmail()} passwordHash={$this->getPasswordHash()} "
+            ."profilePicturePath={$this->getProfilePicturePath()} permissions={$this->getPermissions()}]";
     }
 }
