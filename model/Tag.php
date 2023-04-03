@@ -42,6 +42,6 @@ class Tag
 
     public function __toString(): string
     {
-        return "[PRODUCT: id={$this->getId()} name={$this->getName()}]";
+        return "[TAG: id={$this->getId()} name={$this->getName()}]";
     }
 }

@@ -56,6 +56,6 @@ class FAQ
 
     public function __toString(): string
     {
-        return "[PRODUCT: id={$this->getId()} question={$this->getQuestion()} answer={$this->getAnswer()} authorId={$this->getAuthorId()}]";
+        return "[FAQ: id={$this->getId()} question={$this->getQuestion()} answer={$this->getAnswer()} authorId={$this->getAuthorId()}]";
     }
 }

@@ -70,7 +70,7 @@ class Ticket
 
     public function __toString(): string
     {
-        return "[METRIC: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
+        return "[TICKET: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
             ."isOpen={$this->getIsOpen()} authorId={$this->getAuthorId()} assigneeId={$this->assigneeId}]";
     }
 }
