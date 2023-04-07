@@ -11,18 +11,20 @@ class User
     private string $firstname;
     private string $lastname;
     private string $birthday;
+    private string $phoneNumber;
     private string $email;
     private string $passwordHash;
     private string $profilePicturePath;
     private int $permissionLevel;
 
     // Constructor
-    public function __construct(int $id, string $firstname, string $lastname, string $birthday, string $email, string $passwordHash, string $profilePicturePath, int $permissionLevel)
+    public function __construct(int $id, string $firstname, string $lastname, string $birthday, string $phoneNumber, string $email, string $passwordHash, string $profilePicturePath, int $permissionLevel)
     {
         $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->birthday = $birthday;
+        $this->phoneNumber = $phoneNumber;
         $this->email = $email;
         $this->passwordHash = $passwordHash;
         $this->profilePicturePath = $profilePicturePath;
@@ -49,6 +51,11 @@ class User
     public function getBirthday(): string
     {
         return htmlspecialchars($this->birthday);
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return htmlspecialchars($this->phoneNumber);
     }
 
     public function getEmail(): string
@@ -81,7 +88,7 @@ class User
     {
         $query = 'SELECT * FROM USERS;';
         $result = Connection::getPDO()->query($query);
-        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
+        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
 
         return $usersArray;
     }
@@ -101,7 +108,7 @@ class User
         try
         {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
 
             if(!empty($usersArray))
                 return $usersArray[0];
@@ -127,7 +134,7 @@ class User
         try
         {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
 
             if(!empty($usersArray))
                 return $usersArray[0];
@@ -142,7 +149,8 @@ class User
     public function __toString(): string
     {
         return "[USER: id={$this->getId()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
-            ."birthday={$this->getBirthday()} email={$this->getEmail()} passwordHash={$this->getPasswordHash()} "
-            ."profilePicturePath={$this->getProfilePicturePath()} permissionLevel={$this->getPermissionLevel()}]";
+            ."birthday={$this->getBirthday()} phoneNumber={$this->getPhoneNumber()} email={$this->getEmail()} "
+            ."passwordHash={$this->getPasswordHash()} profilePicturePath={$this->getProfilePicturePath()} "
+            ."permissionLevel={$this->getPermissionLevel()}]";
     }
 }
