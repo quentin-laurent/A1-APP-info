@@ -7,18 +7,18 @@ class Ticket
     private string $title;
     private string $description;
     private bool $isOpen;
-    private int $authorId;
-    private int $assigneeId;
+    private string $authorEmail;
+    private string $assigneeEmail;
 
     // Constructor
-    public function __construct(int $id, string $title, string $description, bool $isOpen, int $authorId, int $assigneeId)
+    public function __construct(int $id, string $title, string $description, bool $isOpen, string $authorEmail, string $assigneeEmail)
     {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->isOpen = $isOpen;
-        $this->authorId = $authorId;
-        $this->assigneeId = $assigneeId;
+        $this->authorEmail = $authorEmail;
+        $this->assigneeEmail = $assigneeEmail;
     }
 
     // Getters & Setters
@@ -43,14 +43,14 @@ class Ticket
         return htmlspecialchars($this->isOpen);
     }
 
-    public function getAuthorId()
+    public function getAuthorEmail()
     {
-        return htmlspecialchars($this->authorId);
+        return htmlspecialchars($this->authorEmail);
     }
 
-    public function getAssigneeId()
+    public function getAssigneeEmail()
     {
-        return htmlspecialchars($this->assigneeId);
+        return htmlspecialchars($this->assigneeEmail);
     }
     #endregion Getters & Setters
 
@@ -71,6 +71,6 @@ class Ticket
     public function __toString(): string
     {
         return "[TICKET: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
-            ."isOpen={$this->getIsOpen()} authorId={$this->getAuthorId()} assigneeId={$this->assigneeId}]";
+            ."isOpen={$this->getIsOpen()} authorEmail={$this->getAuthorEmail()} assigneeEmail={$this->getAssigneeEmail()}]";
     }
 }

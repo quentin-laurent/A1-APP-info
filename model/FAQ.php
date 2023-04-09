@@ -6,15 +6,15 @@ class FAQ
     private int $id;
     private string $question;
     private string $answer;
-    private int $authorId;
+    private string $authorEmail;
 
     // Constructor
-    public function __construct(int $id, string $question, string $answer, int $authorId)
+    public function __construct(int $id, string $question, string $answer, string $authorEmail)
     {
         $this->id = $id;
         $this->question = $question;
         $this->answer = $answer;
-        $this->authorId = $authorId;
+        $this->authorEmail = $authorEmail;
     }
 
     // Getters & Setters
@@ -34,9 +34,9 @@ class FAQ
         return htmlspecialchars($this->answer);
     }
 
-    public function getAuthorId()
+    public function getAuthorEmail()
     {
-        return htmlspecialchars($this->authorId);
+        return htmlspecialchars($this->authorEmail);
     }
     #endregion Getters & Setters
 
@@ -56,6 +56,6 @@ class FAQ
 
     public function __toString(): string
     {
-        return "[FAQ: id={$this->getId()} question={$this->getQuestion()} answer={$this->getAnswer()} authorId={$this->getAuthorId()}]";
+        return "[FAQ: id={$this->getId()} question={$this->getQuestion()} answer={$this->getAnswer()} authorEmail={$this->getAuthorEmail()}]";
     }
 }

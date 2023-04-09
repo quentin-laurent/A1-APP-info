@@ -7,25 +7,23 @@ const ADMINISTRATOR = 2;
 class User
 {
     // Attributes
-    private int $id;
+    private string $email;
     private string $firstname;
     private string $lastname;
     private string $birthday;
     private string $phoneNumber;
-    private string $email;
     private string $passwordHash;
     private string $profilePicturePath;
     private int $permissionLevel;
 
     // Constructor
-    public function __construct(int $id, string $firstname, string $lastname, string $birthday, string $phoneNumber, string $email, string $passwordHash, string $profilePicturePath, int $permissionLevel)
+    public function __construct(string $email, string $firstname, string $lastname, string $birthday, string $phoneNumber, string $passwordHash, string $profilePicturePath, int $permissionLevel)
     {
-        $this->id = $id;
+        $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->birthday = $birthday;
         $this->phoneNumber = $phoneNumber;
-        $this->email = $email;
         $this->passwordHash = $passwordHash;
         $this->profilePicturePath = $profilePicturePath;
         $this->permissionLevel = $permissionLevel;
@@ -33,9 +31,9 @@ class User
 
     // Getters & Setters
     #region Getters & Setters
-    public function getId(): int
+    public function getEmail(): string
     {
-        return htmlspecialchars($this->id);
+        return htmlspecialchars($this->email);
     }
 
     public function getFirstname(): string
@@ -56,11 +54,6 @@ class User
     public function getPhoneNumber(): string
     {
         return htmlspecialchars($this->phoneNumber);
-    }
-
-    public function getEmail(): string
-    {
-        return htmlspecialchars($this->email);
     }
 
     public function getPasswordHash(): string
@@ -88,36 +81,9 @@ class User
     {
         $query = 'SELECT * FROM USERS;';
         $result = Connection::getPDO()->query($query);
-        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
+        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
 
         return $usersArray;
-    }
-
-    /**
-     * Fetches a User from the database using its id.
-     * @deprecated For testing purposes only. Please use {@see User::fetchFromEmail()} instead.
-     * @param int $id The id of the User.
-     * @return ?User The corresponding User if it exists, null otherwise.
-     */
-    public static function fetchFromID(int $id): ?User
-    {
-        $query = 'SELECT * FROM USERS WHERE id = :id;';
-        $preparedStatement = Connection::getPDO()->prepare($query);
-        $preparedStatement->bindParam('id', $id);
-
-        try
-        {
-            $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
-
-            if(!empty($usersArray))
-                return $usersArray[0];
-        }
-        catch(PDOException $e)
-        {
-            echo "<strong style='color: red'> Connection error: ".$e->getMessage()."<br></strong>";
-        }
-        return null;
     }
 
     /**
@@ -134,7 +100,7 @@ class User
         try
         {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8,9]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
 
             if(!empty($usersArray))
                 return $usersArray[0];
@@ -148,8 +114,8 @@ class User
 
     public function __toString(): string
     {
-        return "[USER: id={$this->getId()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
-            ."birthday={$this->getBirthday()} phoneNumber={$this->getPhoneNumber()} email={$this->getEmail()} "
+        return "[USER: email={$this->getEmail()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
+            ."birthday={$this->getBirthday()} phoneNumber={$this->getPhoneNumber()} "
             ."passwordHash={$this->getPasswordHash()} profilePicturePath={$this->getProfilePicturePath()} "
             ."permissionLevel={$this->getPermissionLevel()}]";
     }

@@ -5,14 +5,14 @@ class Product
     // Attributes
     private int $id;
     private string $name;
-    private int $userId;
+    private int $userEmail;
 
     // Constructor
-    public function __construct(int $id, string $name, int $userId)
+    public function __construct(int $id, string $name, string $userEmail)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->userId = $userId;
+        $this->userEmail = $userEmail;
     }
 
     // Getters & Setters
@@ -27,9 +27,9 @@ class Product
         return htmlspecialchars($this->name);
     }
 
-    public function getUserId()
+    public function getUserEmail()
     {
-        return htmlspecialchars($this->userId);
+        return htmlspecialchars($this->userEmail);
     }
     #endregion Getters & Setters
 
@@ -49,6 +49,6 @@ class Product
 
     public function __toString(): string
     {
-        return "[PRODUCT: id={$this->getId()} name={$this->getName()} userId={$this->getUserId()}]";
+        return "[PRODUCT: id={$this->getId()} name={$this->getName()} userEmail={$this->getUserEmail()}]";
     }
 }
