@@ -56,7 +56,7 @@ class Metric
     {
         $query = 'SELECT * FROM METRIC;';
         $result = Connection::getPDO()->query($query);
-        $metricsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Metric', [1,2,3,4,5]);
+        $metricsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Metric', [1, 2, 3, 4, 5]);
 
         return $metricsArray;
     }
@@ -64,6 +64,6 @@ class Metric
     public function __toString(): string
     {
         return "[METRIC: id={$this->getId()} metricType={$this->getMetricType()} metricValue={$this->getMetricValue()} "
-            ."metricDate={$this->metricDate} productId={$this->productId}]";
+            . "metricDate={$this->metricDate} productId={$this->productId}]";
     }
 }

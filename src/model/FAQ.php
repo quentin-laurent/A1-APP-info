@@ -49,7 +49,7 @@ class FAQ
     {
         $query = 'SELECT * FROM FAQ;';
         $result = Connection::getPDO()->query($query);
-        $faqsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FAQ', [1,2,3,4]);
+        $faqsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FAQ', [1, 2, 3, 4]);
 
         return $faqsArray;
     }

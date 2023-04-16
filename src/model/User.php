@@ -81,7 +81,7 @@ class User
     {
         $query = 'SELECT * FROM USERS;';
         $result = Connection::getPDO()->query($query);
-        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
+        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8]);
 
         return $usersArray;
     }
@@ -97,17 +97,14 @@ class User
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('email', $email);
 
-        try
-        {
+        try {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1,2,3,4,5,6,7,8]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8]);
 
-            if(!empty($usersArray))
+            if (!empty($usersArray))
                 return $usersArray[0];
-        }
-        catch(PDOException $e)
-        {
-            echo "<strong style='color: red'> Connection error: ".$e->getMessage()."<br></strong>";
+        } catch (PDOException $e) {
+            echo "<strong style='color: red'> Connection error: " . $e->getMessage() . "<br></strong>";
         }
         return null;
     }
@@ -115,8 +112,8 @@ class User
     public function __toString(): string
     {
         return "[USER: email={$this->getEmail()} firstname={$this->getFirstname()} lastname={$this->getLastname()} "
-            ."birthday={$this->getBirthday()} phoneNumber={$this->getPhoneNumber()} "
-            ."passwordHash={$this->getPasswordHash()} profilePicturePath={$this->getProfilePicturePath()} "
-            ."permissionLevel={$this->getPermissionLevel()}]";
+            . "birthday={$this->getBirthday()} phoneNumber={$this->getPhoneNumber()} "
+            . "passwordHash={$this->getPasswordHash()} profilePicturePath={$this->getProfilePicturePath()} "
+            . "permissionLevel={$this->getPermissionLevel()}]";
     }
 }

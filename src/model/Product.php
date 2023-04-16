@@ -42,7 +42,7 @@ class Product
     {
         $query = 'SELECT * FROM PRODUCT;';
         $result = Connection::getPDO()->query($query);
-        $productsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Product', [1,2,3]);
+        $productsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Product', [1, 2, 3]);
 
         return $productsArray;
     }

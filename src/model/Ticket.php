@@ -63,7 +63,7 @@ class Ticket
     {
         $query = 'SELECT * FROM TICKET;';
         $result = Connection::getPDO()->query($query);
-        $ticketsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1,2,3,4,5,6]);
+        $ticketsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
 
         return $ticketsArray;
     }
@@ -71,6 +71,6 @@ class Ticket
     public function __toString(): string
     {
         return "[TICKET: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
-            ."isOpen={$this->getIsOpen()} authorEmail={$this->getAuthorEmail()} assigneeEmail={$this->getAssigneeEmail()}]";
+            . "isOpen={$this->getIsOpen()} authorEmail={$this->getAuthorEmail()} assigneeEmail={$this->getAssigneeEmail()}]";
     }
 }

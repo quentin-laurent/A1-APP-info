@@ -35,7 +35,7 @@ class Tag
     {
         $query = 'SELECT * FROM TAG;';
         $result = Connection::getPDO()->query($query);
-        $tagsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Tag', [1,2]);
+        $tagsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Tag', [1, 2]);
 
         return $tagsArray;
     }
