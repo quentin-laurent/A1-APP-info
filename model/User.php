@@ -1,8 +1,8 @@
 <?php
 
-const USER = 0;
-const MANAGER = 1;
-const ADMINISTRATOR = 2;
+const USER = 1;
+const MANAGER = 2;
+const ADMINISTRATOR = 3;
 
 class User
 {
