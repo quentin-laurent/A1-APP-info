@@ -1,0 +1,659 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: wheat;  /* A modification */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: rgba(36, 36, 36, 0.8);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Pour retirer la barre de scroll (code pris sur https://www.journaldunet.fr/web-tech/developpement/1202721-comment-masquer-une-barre-de-defilement-sans-empecher-de-scroller/) */  
+#parent{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  }
+  #enfant{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -1%; /* Il faut varier cette variable en fonction du navigateur utilisé (la barre de défilement n'a pas toujours la même largeur) */
+  overflow: auto;
+  }
+
+/* Bouton retour en haut*/
+
+.button-top-return{
+  z-index: 1;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 50px;
+  right: 50px;
+  background-color: #1B998B;
+  border-radius: 50px;
+  opacity: 0.7;
+
+}
+
+#button-top-return{
+ height: 20px;
+ width: 20px;
+ margin-top: 15px;
+ margin-left: 15px;
+}
+/* Fin Bouton retour en haut*/
+
+
+
+/* Debut vitrine */ 
+
+.Vitrine{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/*Header*/
+
+.header{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+
+.logo-navbar{
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  max-width: 150px;
+  max-height: 150px;
+
+}
+
+#logo-navbar{
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.9;
+  
+}
+
+.link-element-navbar{
+  position: absolute;
+  top: 42%;
+  left: 25%;
+  /*transform: translate(-50%, -50%);*/
+  width: 350px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.link-page{
+  margin:5%;
+  color: #F8F1FF;
+  font-family: Arial;
+  font-weight: bolder;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.link-page:hover{
+  color: #1B998B;
+  transition: 0.7s;
+transform: translateY(-20%);
+}
+
+.button-navbar{
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+
+#link-page-button{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:auto;
+  color: #F8F1FF;
+  font-family: Arial;
+  font-weight: bolder;
+  text-decoration: none;
+  border-radius: 30px;
+  border: 2px solid #F8F1FF;
+}
+
+#link-page-button:hover{
+  transition: .8s;
+  border: 2px solid #1B998B;
+  background-color: #1B998B;
+}
+
+
+/*Fin Header*/
+
+/*Carrousel Accueil*/
+.carrousel{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imgCarrousel{
+  width: 100%;
+  height: 100%;
+}
+
+
+.slider-1 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.slider-1 .slider {
+  animation: slider-1 11s infinite ease-in-out;
+  animation-duration: 25s;
+  display: flex;
+}
+
+
+@keyframes slider-1 {
+  0%,
+  20% {
+    transform: translateX(0);
+  }
+  25%,
+  45% {
+    transform: translateX(-100%);
+  }
+  50%,
+  70% {
+    transform: translateX(-200%);
+  }
+  75%,
+  95% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(-400%);
+  }
+} 
+
+/*Fin Carrousel Accueil*/
+
+/* Logo central fixe */
+.LogoCentral{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  max-width: 300px;
+  max-height: 165px;
+  opacity: 0.9;
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}
+
+#imgLogoSymbole{
+  max-width: 120px;
+  max-height: 120px;
+  margin: auto;
+  opacity: 1;
+}
+
+#imgLogoNom{
+  opacity: 1;
+  max-width: 300px;
+  max-height: 60px;
+  margin: auto;
+}
+
+/* Carrousel phrase */
+
+.cadre{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  top: 85%;
+  width: 350px;
+  height: 50px;
+  color: #f1f1f1;
+  font-family: Arial;
+}
+
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.carousel{
+  position: relative;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 45px;
+}
+
+.carousel .preTxt{
+  position: absolute;
+  right: 52%;
+  height: 45px;
+  text-shadow: 1px 1px 2px black;
+
+}
+
+.carousel .changeHidden{
+  position: absolute;
+  left: 50%;
+  height: 45px;
+  border-bottom: 2px solid white;
+  text-align: left;
+  overflow: hidden;
+}
+
+.carousel .changeHidden .contenant{
+
+  position: relative;
+  animation: carousel 9s infinite alternate-reverse;
+
+}
+
+.carousel .changeHidden .element{
+  display: block;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px black;
+}
+
+@keyframes carousel{
+  0%, 35%{
+      transform: translateY(0);
+  }
+  40%, 75%{
+      transform: translateY(-45px);
+  }
+  80%, 100%{
+      transform: translateY(-90px);
+  }
+
+
+}
+
+/*Fin Carrousel phrase*/
+/* Fin logo central fixe */
+
+/* Fin vitrine */
+
+/* ZONE 2 */
+
+.ZONE2{
+  background-color: #F8F1FF;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/*TOP-HALF*/
+.ZONE2-TOP-HALF{
+  height: 50%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ZONE2-REC1{
+  background-color: #534D56;
+  height: 100%;
+  width: 60%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+}
+
+#BLOC-ABOUT{
+  transform: translateY(75%);
+  color: #F8F1FF;
+  font-weight: bolder;
+  font-size: 350%;
+}
+
+.ZONE2-REC2{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/*FIN TOP-HALF*/
+
+
+/*BOTTOM-HALF*/
+.ZONE2-BOTTOM-HALF{
+  height: 50%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.ZONE2-REC3{
+  background-color: #1B998B;
+  height: 100%;
+  width: 25%;
+  padding: 0;
+  margin: 0;
+}
+
+.ZONE2-REC4{
+  height: 100%;
+  width: 50%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#BLOC-ZONE2-TEXT{
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.ZONE2-REC5{
+  background-color: #DECDF5;
+  height: 100%;
+  width: 25%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#BLOC-TEAM{
+  color: #F8F1FF;
+  font-weight: bolder;
+  font-size: 300%;
+  transform: rotate(90deg);
+}
+
+
+
+
+/*FIN BOTTOM-HALF*/
+
+/* FIN ZONE 2 */
+
+/* ZONE 3 */
+
+.ZONE3{
+  background-color: #F8F1FF;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+/*RIGHT-HALF*/
+.ZONE3-RIGHT-HALF{
+  height: 100%;
+  width: 75%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ZONE3-RIGHT-TOP-HALF{
+  background-color: #1B998B;
+  height: 45%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#BLOC-PRODUCT{
+  transform: translateY(75%);
+  color: #F8F1FF;
+  font-weight: bolder;
+  font-size: 350%;;
+}
+
+.ZONE3-RIGHT-BOTTOM-HALF{
+  height: 55%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ZONE3-RIGHT-BOTTOM-HALF-REC1{
+  background-color: #DECDF5;
+  height: 100%;
+  width: 40%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ZONE3-REC2{
+  height: 50%;
+  width: 35%;
+}
+
+
+.ZONE3-BOTTOM-HALF-REC2{
+  height: 100%;
+  width: 60%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#BLOC-ZONE3-TEXT{
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+
+/*FIN RIGHT-HALF*/
+
+
+/*LEFT-HALF*/
+.ZONE3-LEFT-HALF{
+  height: 100%;
+  width: 25%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-image: url('images/360_F_114822960_n2cUHnEJrX3btCt7rpiYf4tfhw6rEE2r.jpg');
+  background-size: cover;
+  background-position-x: 45%;*/
+  background-color: black;
+}
+
+
+
+.ZONE3-REC4{
+  width: 65%;
+  transform: rotate(90deg);
+  
+}
+
+/*FIN LEFT-HALF*/
+
+/* FIN ZONE 3 */
+
+/* ZONE 4 */
+
+.ZONE4{
+  background-color: #F8F1FF;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/*TOP-HALF*/
+.ZONE4-TOP-HALF{
+  height: 50%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ZONE4-REC1{
+  background-color: #DECDF5;
+  height: 100%;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+}
+
+#BLOC-Technology{
+  transform: translateY(75%);
+  color: #F8F1FF;
+  font-weight: bolder;
+  font-size: 350%;
+}
+
+.ZONE4-REC2{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0.7;
+}
+
+/*FIN TOP-HALF*/
+
+
+/*BOTTOM-HALF*/
+.ZONE4-BOTTOM-HALF{
+  height: 50%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.ZONE4-REC3{
+  height: 100%;
+  width: 40%;
+  padding: 0;
+  margin: 0;
+}
+
+.ZONE4-REC4{
+  background-color: #bca8d6;
+  height: 100%;
+  width: 60%;
+  padding: 0;
+  margin: 0;
+  opacity: 0.9;
+
+}
+
+
+/*FIN BOTTOM-HALF*/
+
+/* ZONE 4 Carrousel */
+
+/*
+.ZONE4-Carrousel{
+  z-index: 2;
+  background-color: red;
+  height: 50%;
+  width: 50%;
+
+}
+*/
+/* FINE ZONE 4 Carrousel*/
+
+/* FIN ZONE 4 */
