@@ -2,3 +2,5 @@
 .idea/
 # Database config
 src/conf/
+
+test.php
