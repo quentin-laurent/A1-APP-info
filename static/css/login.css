@@ -116,6 +116,14 @@ a {
     width: 50%;
 }
 
+#error-message {
+    color: red;
+    font-weight: bold;
+    font-family: Helvetica, serif;
+    font-size: small;
+    text-align: center;
+}
+
 a:hover {
     text-decoration: underline;
 }

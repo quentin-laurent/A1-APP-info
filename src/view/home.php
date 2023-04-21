@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../static/css/home.css">
 </head>
 
-<?php include('src/view/navbar.html'); ?>
+<?php include('src/view/navbar.php'); ?>
 
 <body>
     <div id="parent">

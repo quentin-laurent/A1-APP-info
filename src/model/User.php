@@ -1,8 +1,6 @@
 <?php
-
-const USER = 1;
-const MANAGER = 2;
-const ADMINISTRATOR = 3;
+require_once('src/conf/Connection.php');
+Connection::connect();
 
 class User
 {
@@ -11,13 +9,13 @@ class User
     private string $firstname;
     private string $lastname;
     private string $birthday;
-    private string $phoneNumber;
+    private ?string $phoneNumber;
     private string $passwordHash;
-    private string $profilePicturePath;
+    private ?string $profilePicturePath;
     private int $permissionLevel;
 
     // Constructor
-    public function __construct(string $email, string $firstname, string $lastname, string $birthday, string $phoneNumber, string $passwordHash, string $profilePicturePath, int $permissionLevel)
+    public function __construct(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, string $passwordHash, ?string $profilePicturePath, int $permissionLevel)
     {
         $this->email = $email;
         $this->firstname = $firstname;
@@ -104,9 +102,37 @@ class User
             if (!empty($usersArray))
                 return $usersArray[0];
         } catch (PDOException $e) {
-            echo "<strong style='color: red'> Connection error: " . $e->getMessage() . "<br></strong>";
+            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
         }
         return null;
+    }
+
+    /**
+     * Adds a new user to the database.
+     * @param User $user The user to add to the database.
+     * @return bool True if the user has been added to the database, false otherwise
+     */
+    public static function add(User $user): bool
+    {
+        $query = 'INSERT INTO USERS(email, firstname, lastname, birthday, phoneNumber, passwordHash, profilePicturePath, permissionLevel) VALUES(:email, :firstname, :lastname, :birthday, :phoneNumber, :passwordHash, :profilePicturePath, :permissionLevel)';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('email', $user->getEmail());
+        $preparedStatement->bindParam('firstname', $user->getFirstname());
+        $preparedStatement->bindParam('lastname', $user->getLastname());
+        $preparedStatement->bindParam('birthday', $user->getBirthday());
+        $preparedStatement->bindParam('phoneNumber', $user->getPhoneNumber());
+        $preparedStatement->bindParam('passwordHash', $user->getPasswordHash());
+        $preparedStatement->bindParam('profilePicturePath', $user->getProfilePicturePath());
+        $preparedStatement->bindParam('permissionLevel', $user->getPermissionLevel());
+
+        try {
+            $preparedStatement->execute();
+        }
+        catch (PDOException $e) {
+            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            return false;
+        }
+        return true;
     }
 
     public function __toString(): string

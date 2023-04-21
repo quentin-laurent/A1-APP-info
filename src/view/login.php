@@ -84,15 +84,19 @@
 
 <div class="grid-container">
     <h1 id="hLogIn">Log in</h1>
-    <form action='SignIn.php' method='POST' value="LogIn" id="left" class="grid">
-        <input type="text" name="email" class="first" placeholder="Email"/><br>
-        <input type="password" name="password"  class="second login" id="pass-field" placeholder="Password"/><br>
+    <form action='./login/signin' method='POST' id="left" class="grid">
+        <input type="text" name="email" class="first" placeholder="Email" required/><br>
+        <input type="password" name="password"  class="second login" id="pass-field" placeholder="Password" required/><br>
         <a href=" " id="forgotPassword">Forgot my password</a>
+        <?php
+            if(isset($_GET['error']) && isset($_SESSION['errorMessage']))
+                echo '<p id=error-message>'.$_SESSION['errorMessage'].'</p>';
+        ?>
         <input class="SignIn submit" type="submit" name="submitSignIn" value="Sign In"/>
     </form>
 
     <h1 id="hCreateAccount">Create Account</h1>
-    <form action="CreateAccount.php" method="post" id="right" class="grid">
+    <form action="./login/signup" method="POST" id="right" class="grid">
         <input type="text" id="firstName" name="firstName" class="first" placeholder="First Name" required><br>
 
         <input type="text" id="lastName" name="lastName" class="second" placeholder="Second Name" required><br>
@@ -101,11 +105,11 @@
 
         <input type="email" id="email" name="email" class="fourth" placeholder="Email" required><br>
 
-        <input type="tel" id="phoneNumber" name="phoneNumber" class="fifth" placeholder="Phone number" required><br>
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="fifth" placeholder="Phone number (optional)"><br>
 
         <input type="password" id="password" name="password" class="sixth" placeholder="Password" required><br>
 
-        <input type="password" id="verifyPassword" name="verifyPassword" class="seventh" placeholder="Verify password" required><br>
+        <input type="password" id="passwordVerify" name="passwordVerify" class="seventh" placeholder="Verify password" required><br>
 
         <input class="create submit" type="submit" name="submitCreateAccount"  value="Sign Up">
     </form>

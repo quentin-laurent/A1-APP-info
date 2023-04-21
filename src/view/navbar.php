@@ -14,5 +14,13 @@
             </li>
         </ul>
     </nav>
-    <a class="btn-login" href="./login"><button>Connexion</button></a>
+    <?php
+    if(isset($_SESSION['email']))
+    {
+        $user = User::fetchFromEmail($_SESSION['email']);
+        echo "<p>Bonjour {$user->getFirstname()}</p>";
+    }
+    else
+        echo '<a class="btn-login" href="./login"><button>Connexion</button></a>';
+    ?>
 </header>
