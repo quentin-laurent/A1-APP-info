@@ -1,5 +1,6 @@
 <header>
-    <img id="navbar-logo" src="../static/img/ontrack-logo.png" alt="logo">
+    <?php $hostname = $_SERVER['HTTP_HOST']; ?>
+    <a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="navbar-logo" src="../static/img/infinitemeasures-logo.png" alt="logo"></a>
     <nav>
         <ul class="navbar-links">
             <li><a href="#">Accueil</a></li>

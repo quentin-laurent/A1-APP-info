@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OnTrack / Home</title>
-  <link rel="icon" type="image/x-icon" href="../static/img/ontrack-logo.png">
+  <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
   <link rel="stylesheet" href="../static/css/navbar.css">
   <script src="../static/js/navbar.js"></script>
   <link rel="stylesheet" href="../static/css/home.css">
@@ -32,8 +32,7 @@
 
         <!--Logo Central-->
                 <div class="LogoCentral">
-                    <img src="../static/img/ontrack-logo.png" alt="" id="imgLogoSymbole">
-                    <img src="../static/img/ontrack-text.png" alt="" id="imgLogoNom">
+                    <img src="../static/img/portan-logo.png" alt="" id="imgLogoNom">
 
                     <div class="cadre">
                         <div class="center">
