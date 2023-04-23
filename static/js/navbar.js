@@ -15,4 +15,8 @@ document.addEventListener("click", event => {
         dropdown.classList.remove("active")
     })
 
-})
+});
+
+function openMenu() {
+    document.getElementById('submenu-wrap').classList.toggle("open");
+}

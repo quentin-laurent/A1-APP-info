@@ -114,7 +114,7 @@ class User
      */
     public static function add(User $user): bool
     {
-        $query = 'INSERT INTO USERS(email, firstname, lastname, birthday, phoneNumber, passwordHash, profilePicturePath, permissionLevel) VALUES(:email, :firstname, :lastname, :birthday, :phoneNumber, :passwordHash, :profilePicturePath, :permissionLevel)';
+        $query = 'INSERT INTO USERS(email, firstname, lastname, birthday, phoneNumber, passwordHash) VALUES(:email, :firstname, :lastname, :birthday, :phoneNumber, :passwordHash)';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('email', $user->getEmail());
         $preparedStatement->bindParam('firstname', $user->getFirstname());
@@ -122,8 +122,6 @@ class User
         $preparedStatement->bindParam('birthday', $user->getBirthday());
         $preparedStatement->bindParam('phoneNumber', $user->getPhoneNumber());
         $preparedStatement->bindParam('passwordHash', $user->getPasswordHash());
-        $preparedStatement->bindParam('profilePicturePath', $user->getProfilePicturePath());
-        $preparedStatement->bindParam('permissionLevel', $user->getPermissionLevel());
 
         try {
             $preparedStatement->execute();

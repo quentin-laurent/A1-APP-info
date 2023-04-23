@@ -119,7 +119,7 @@ a {
 #error-message {
     color: red;
     font-weight: bold;
-    font-family: Helvetica, serif;
+    font-family: monospace;
     font-size: small;
     text-align: center;
 }
