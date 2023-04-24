@@ -4,7 +4,7 @@
     <meta charset="ISO-8859-1">
     <title>OnTrack / Log In</title>
     <link rel="stylesheet" href="../static/css/login.css">
-    <link rel="icon" type="image/x-icon" href="../static/img/ontrack-logo.png">
+    <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
     <script type="text/javascript">
         let left = false;
         function animation() {
@@ -19,7 +19,7 @@
                 document.getElementById('right').style.visibility = 'hidden';                     
                 document.getElementById('hCreateAccount').style.visibility = 'hidden';
                 background.style.paddingLeft= '0%'
-                logo.src='../static/img/ontrack-logo.png';
+                logo.src='../static/img/infinitemeasures-logo.png';
                 var margin = -15;
                 setInterval(moveDiv, 5);
 
@@ -58,7 +58,7 @@
                     document.getElementById('p').innerHTML = 'To stay connected with us please <br>fill in your credentials';
                     document.getElementById('hCreateAccount').style.visibility = 'visible';
                     document.getElementById('right').style.visibility = 'visible'; 
-                    logo.src='../static/img/ontrack-logo-dark.png';
+                    logo.src='../static/img/infinitemeasures-logo.png';
                 }
             }
         }
@@ -74,7 +74,7 @@
 </head>
 <body>
 
-<img id="logo" src="../static/img/ontrack-logo.png" alt="Logo">
+<img id="logo" src="../static/img/infinitemeasures-logo.png" alt="Logo">
 <div id="background">
     Hello, Friend!
     <p id="p">Enter your personal details and start
