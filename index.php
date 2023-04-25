@@ -51,3 +51,7 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/delete' && $method ===
 else if($uri === '/'.ROOT_URI.'index.php/test' && $method === 'GET') {
     require('test.php');
 }
+else {
+    $hostname = $_SERVER['HTTP_HOST'];
+    header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+}
