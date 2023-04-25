@@ -1,0 +1,26 @@
+table {
+    border: solid 1px black;
+    border-collapse: collapse;
+    width: 75%;
+    margin: 5% auto auto;
+}
+
+th, td {
+    border: solid 1px black;
+    border-collapse: collapse;
+    padding: 1%;
+    text-align: center;
+}
+
+td img {
+    width: 30px;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+}
+
+.email p {
+    margin-left: 5%;
+}

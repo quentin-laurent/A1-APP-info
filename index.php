@@ -2,6 +2,7 @@
 session_start();
 require_once('src/controller/LoginController.php');
 require_once('src/controller/HomeController.php');
+require_once('src/controller/UserManagementController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -30,6 +31,10 @@ else if($uri === '/'.ROOT_URI.'index.php/login/signin' && $method === 'POST') {
 // GET endpoint for Signing out
 else if($uri === '/'.ROOT_URI.'index.php/logout' && $method === 'GET') {
     LoginController::signOut();
+}
+// GET endpoint for user management
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/users' && $method === 'GET') {
+    UserManagementController::displayUserManagementPage();
 }
 else if($uri === '/'.ROOT_URI.'index.php/test' && $method === 'GET') {
     require('test.php');

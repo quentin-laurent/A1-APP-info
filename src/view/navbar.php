@@ -1,9 +1,13 @@
 <header>
-    <?php $hostname = $_SERVER['HTTP_HOST']; ?>
-    <a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="navbar-logo" src="../static/img/infinitemeasures-logo.png" alt="logo"></a>
+    <?php
+        $hostname = $_SERVER['HTTP_HOST'];
+        $imgDirectory = "http://$hostname/" . ROOT_URI . '/static/img/';
+        $rootURL = "http://$hostname/" . ROOT_URI . 'index.php';
+    ?>
+    <a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="navbar-logo" src=<?php echo "$imgDirectory/infinitemeasures-logo.png"; ?> alt="logo"></a>
     <nav>
         <ul class="navbar-links">
-            <li><a href="#">Accueil</a></li>
+            <li><a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>>Accueil</a></li>
             <li><a href="#">Mes données</a></li>
             <li><a href="#">Tickets</a></li>
             <?php
@@ -16,7 +20,7 @@
                     <li class="dropdown" data-dropdown>
                         <a href="#" data-dropdown-link>Backoffice</a>
                         <div class="dropdown-menu dropdown-links">
-                            <a href="#">Gestion utilisateurs</a>
+                            <a href="backoffice/users">Gestion utilisateurs</a>
                             <a href="#">Gestion FAQ</a>
                             <a href="#">Gestion Tickets</a>
                         </div>
@@ -52,13 +56,13 @@
         echo "
         <div>
             <div id=user-profile>
-                <img id=user-pfp src=../static/img/{$user->getProfilePicturePath()} alt=pfp onclick=openMenu()>
+                <img id=user-pfp src=$imgDirectory/{$user->getProfilePicturePath()} alt=pfp onclick=openMenu()>
                 <p>{$user->getFirstname()} {$user->getLastname()}</p>
             </div>
             <div class=submenu-wrap id=submenu-wrap>
                 <div class=submenu>
                     <div class=user-info>
-                        <img src=../static/img/{$user->getProfilePicturePath()} alt=pfp>
+                        <img src=$imgDirectory/{$user->getProfilePicturePath()} alt=pfp>
                         <div>
                             <p>{$user->getFirstname()} {$user->getLastname()}</p>
                             $roleSpan
@@ -66,12 +70,12 @@
                     </div>
                     <hr>
                     <a class=submenu-link href=#>
-                        <img src=../static/img/profile-icon.svg alt=profile-icon>
+                        <img src=$imgDirectory/profile-icon.svg alt=profile-icon>
                         <p>Mon profil</p>
                         <span>></span>
                     </a>
-                    <a class=submenu-link href=logout>
-                        <img src=../static/img/logout-icon.svg alt=logout-icon>
+                    <a class=submenu-link href=$rootURL/logout>
+                        <img src=$imgDirectory/logout-icon.svg alt=logout-icon>
                         <p>Déconnexion</p>
                         <span>></span>
                     </a>
