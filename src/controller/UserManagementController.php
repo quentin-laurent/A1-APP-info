@@ -27,6 +27,19 @@ class UserManagementController
 
     public static function updateUser(): void
     {
+        if(!isset($_SESSION['email']))
+        {
+            header("HTTP/1.1 401 Unauthorized");
+            require('src/view/401.html');
+            exit;
+        }
+        else if(User::fetchFromEmail($_SESSION['email'])->getPermissionLevel() < ADMINISTRATOR)
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
+            exit;
+        }
+
         $user = User::fetchFromEmail($_POST['email']);
         $success = $user->updatePermissionLevel($_POST['permissionLevel']);
         $hostname = $_SERVER['HTTP_HOST'];
@@ -51,6 +64,19 @@ class UserManagementController
      */
     public static function banOrUnbanUser(): void
     {
+        if(!isset($_SESSION['email']))
+        {
+            header("HTTP/1.1 401 Unauthorized");
+            require('src/view/401.html');
+            exit;
+        }
+        else if(User::fetchFromEmail($_SESSION['email'])->getPermissionLevel() < ADMINISTRATOR)
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
+            exit;
+        }
+
         $hostname = $_SERVER['HTTP_HOST'];
 
         if(!isset($_POST['ban']) || !isset($_POST['email']))
@@ -86,6 +112,19 @@ class UserManagementController
      */
     public static function deleteUser(): void
     {
+        if(!isset($_SESSION['email']))
+        {
+            header("HTTP/1.1 401 Unauthorized");
+            require('src/view/401.html');
+            exit;
+        }
+        else if(User::fetchFromEmail($_SESSION['email'])->getPermissionLevel() < ADMINISTRATOR)
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
+            exit;
+        }
+        
         $hostname = $_SERVER['HTTP_HOST'];
 
         if(!isset($_POST['email']))
