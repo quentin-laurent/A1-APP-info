@@ -16,28 +16,28 @@
                 $user = User::fetchFromEmail($_SESSION['email']);
                 if($user->getPermissionLevel() === ADMINISTRATOR)
                 {
-                    echo '
-                    <li class="dropdown" data-dropdown>
-                        <a href="#" data-dropdown-link>Backoffice</a>
-                        <div class="dropdown-menu dropdown-links">
-                            <a href="backoffice/users">Gestion utilisateurs</a>
-                            <a href="#">Gestion FAQ</a>
-                            <a href="#">Gestion Tickets</a>
+                    echo "
+                    <li class='dropdown' data-dropdown>
+                        <a href='#' data-dropdown-link>Backoffice</a>
+                        <div class='dropdown-menu dropdown-links'>
+                            <a href='$rootURL/backoffice/users'>Gestion utilisateurs</a>
+                            <a href='#'>Gestion FAQ</a>
+                            <a href='#'>Gestion Tickets</a>
                         </div>
                     </li>
-                    ';
+                    ";
                 }
                 else if($user->getPermissionLevel() === MANAGER)
                 {
-                    echo '
-                    <li class="dropdown" data-dropdown>
-                        <a href="#" data-dropdown-link>Backoffice</a>
-                        <div class="dropdown-menu dropdown-links">
-                            <a href="#">Gestion FAQ</a>
-                            <a href="#">Gestion Tickets</a>
+                    echo "
+                    <li class='dropdown' data-dropdown>
+                        <a href='#' data-dropdown-link>Backoffice</a>
+                        <div class='dropdown-menu dropdown-links'>
+                            <a href='#'>Gestion FAQ</a>
+                            <a href='#'>Gestion Tickets</a>
                         </div>
                     </li>
-                    ';
+                    ";
                 }
             }
             ?>
@@ -85,6 +85,6 @@
         ";
     }
     else
-        echo '<a class="btn-login" href="./login"><button>Connexion</button></a>';
+        echo "<a class=btn-login href=$rootURL/login><button>Connexion</button></a>";
     ?>
 </header>

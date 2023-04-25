@@ -36,6 +36,18 @@ else if($uri === '/'.ROOT_URI.'index.php/logout' && $method === 'GET') {
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/users' && $method === 'GET') {
     UserManagementController::displayUserManagementPage();
 }
+// POST endpoint to receive updated user data from the user management page
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/users' && $method === 'POST') {
+    UserManagementController::updateUser();
+}
+// POST endpoint used to ban or unban users from the user management page
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/ban' && $method === 'POST') {
+    UserManagementController::banOrUnbanUser();
+}
+// POST endpoint used to delete users from the user management page
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/delete' && $method === 'POST') {
+    UserManagementController::deleteUser();
+}
 else if($uri === '/'.ROOT_URI.'index.php/test' && $method === 'GET') {
     require('test.php');
 }

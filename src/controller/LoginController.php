@@ -17,6 +17,10 @@ class LoginController
         require('src/view/login.php');
     }
 
+    /**
+     * Parses the sign-up form received from the login page.
+     * @return void
+     */
     public static function signUp(): void
     {
         $email = $_POST['email'];
@@ -27,7 +31,7 @@ class LoginController
         $password = $_POST['password'];
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
-        $success = User::add(new User($email, $firstName, $lastName, $birthday, $phoneNumber, $passwordHash, null, USER));
+        $success = User::add(new User($email, $firstName, $lastName, $birthday, $phoneNumber, $passwordHash));
 
         $hostname = $_SERVER['HTTP_HOST'];
         if($success)
@@ -39,6 +43,14 @@ class LoginController
         }
     }
 
+    /**
+     * Parses the sign-in form received from the login page.
+     * <p>It is possible to supply both an email and a password to sign-in without using a POST form
+     * (i.e. after signing-up a user, it is convenient to call this method instead of letting the user sign-in once again)
+     * @param $email
+     * @param $password
+     * @return void
+     */
     public static function signIn($email=null, $password=null): void
     {
         if($email == null)
@@ -48,13 +60,20 @@ class LoginController
         $user = User::fetchFromEmail($email);
         $hostname = $_SERVER['HTTP_HOST'];
 
-        if($user != null && password_verify($password, $user->getPasswordHash()))
+        if($user != null && !$user->isBanned() && password_verify($password, $user->getPasswordHash()))
         {
             $_SESSION['email'] = $email;
             $_SESSION['firstname'] = $user->getFirstname();
             $_SESSION['lastname'] = $user->getLastname();
+            $user->increaseNbConnections();
+            $user->updateLastVisit();
             header("Location: http://$hostname/".ROOT_URI.'index.php/home');
             exit();
+        }
+        else if($user->isBanned())
+        {
+            $_SESSION['errorMessage'] = 'You have been banned.';
+            header("Location: http://$hostname/".ROOT_URI.'index.php/login?error');
         }
         else
         {
@@ -63,6 +82,10 @@ class LoginController
         }
     }
 
+    /**
+     * Logs the user out and destroys the session with all its associated variables.
+     * @return void
+     */
     public static function signOut(): void
     {
         $hostname = $_SERVER['HTTP_HOST'];

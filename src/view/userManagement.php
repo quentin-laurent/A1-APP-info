@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <title>PortAn / User management</title>
     <link rel="stylesheet" href="../../static/css/navbar.css">
+    <link rel="icon" type="image/x-icon" href="../../static/img/infinitemeasures-logo.png">
     <script src="../../static/js/navbar.js"></script>
     <link rel="stylesheet" href="../../static/css/userManagement.css">
+    <script src="../../static/js/userManagement.js" defer></script>
 </head>
 
 <?php include('src/view/navbar.php'); ?>
 
 <body>
     <h1>Gestion des utilisateurs</h1>
+    <?php
+        if(isset($_GET['success']) && isset($_SESSION['successMessage']))
+            echo "<p id=success-message>{$_SESSION['successMessage']}</p>";
+        if(isset($_GET['error']) && isset($_SESSION['errorMessage']))
+            echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
+    ?>
     <table>
         <tr>
             <th>Email</th>
@@ -25,11 +33,13 @@
         <?php
         $users = User::fetchAllUsers();
 
+        $i = 1;
         foreach ($users as $user)
         {
             echo"
             <tr>
                 <td>
+                    <form id=form$i method=POST><input type=hidden name=email value={$user->getEmail()} /></form>
                     <div class=email>
                         <img src=../../static/img/{$user->getProfilePicturePath()}>
                         <p>{$user->getEmail()}</p>
@@ -38,37 +48,42 @@
                 <td>{$user->getFirstname()}</td>
                 <td>{$user->getLastname()}</td>
                 <td>
-                    <select>
+                    <select form=form$i name=permissionLevel>
             ";
             if($user->getPermissionLevel() == USER)
                 echo '
-                    <option value=user selected>Utilisateur</option>
-                    <option value=manager>Gestionnaire</option>
-                    <option value=admin>Administrateur</option>
+                    <option value=1 selected>Utilisateur</option>
+                    <option value=2>Gestionnaire</option>
+                    <option value=3>Administrateur</option>
                 ';
             else if($user->getPermissionLevel() == MANAGER)
                 echo '
-                    <option value=user>Utilisateur</option>
-                    <option value=manager selected>Gestionnaire</option>
-                    <option value=admin>Administrateur</option>
+                    <option value=1>Utilisateur</option>
+                    <option value=2 selected>Gestionnaire</option>
+                    <option value=3>Administrateur</option>
                 ';
             else if($user->getPermissionLevel() == ADMINISTRATOR)
                 echo '
-                    <option value=user>Utilisateur</option>
-                    <option value=manager>Gestionnaire</option>
-                    <option value=admin selected>Administrateur</option>
+                    <option value=1>Utilisateur</option>
+                    <option value=2>Gestionnaire</option>
+                    <option value=3 selected>Administrateur</option>
                 ';
+            $lastVisit = date_format(date_create($user->getLastVisit()), 'd/m/Y');
+            $bannedValue = ($user->isBanned()) ? 'false' : 'true';
+            $bannedText = ($user->isBanned()) ? 'Débannir' : 'Bannir';
             echo "
                     </select>
                 </td>
-                <td>01/01/2000</td>
-                <td>999</td>
+                <td>$lastVisit</td>
+                <td>{$user->getNbConnections()}</td>
                 <td>
-                    <button type=button>Bannir</button>
-                    <button type=button>Supprimer</button>
+                    <button type=submit form=form$i>Valider</button>
+                    <form action=users/ban method=POST><input type=hidden name=email value={$user->getEmail()}><button type=submit name=ban value=$bannedValue>$bannedText</button></form>
+                    <form action=users/delete method=POST><button class=delete-button type=submit name=email value={$user->getEmail()}>Supprimer</button></form>
                 </td>
             </tr>
             ";
+            $i++;
         }
         ?>
     </table>

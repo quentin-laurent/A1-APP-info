@@ -1,3 +1,20 @@
+h1 {
+    text-align: center;
+    font-family: Poppins, 'sans-serif';
+    margin-top: 2%;
+}
+
+#success-message {
+    text-align: center;
+    color: green;
+}
+
+#error-message {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
 table {
     border: solid 1px black;
     border-collapse: collapse;
@@ -10,6 +27,8 @@ th, td {
     border-collapse: collapse;
     padding: 1%;
     text-align: center;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 td img {
