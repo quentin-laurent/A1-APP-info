@@ -232,7 +232,8 @@ class User
 
         $query = 'UPDATE USERS SET banned = :banned WHERE email = :email;';
         $preparedStatement = Connection::getPDO()->prepare($query);
-        $preparedStatement->bindParam('banned', $this->isBanned());
+        $banned = $this->isBanned() ? 1 : 0;
+        $preparedStatement->bindParam('banned', $banned);
         $preparedStatement->bindParam('email', $this->getEmail());
 
         try {
