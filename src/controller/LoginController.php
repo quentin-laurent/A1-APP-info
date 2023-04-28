@@ -70,7 +70,7 @@ class LoginController
             header("Location: http://$hostname/".ROOT_URI.'index.php/home');
             exit();
         }
-        else if($user->isBanned())
+        else if($user != null && $user->isBanned())
         {
             $_SESSION['errorMessage'] = 'You have been banned.';
             header("Location: http://$hostname/".ROOT_URI.'index.php/login?error');
