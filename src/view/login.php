@@ -73,8 +73,11 @@
     </script>
 </head>
 <body>
-
-<img id="logo" src="../static/img/infinitemeasures-logo.png" alt="Logo">
+<?php
+    $hostname = $_SERVER['HTTP_HOST'];
+    $imgDirectory = $imgDirectory = "http://$hostname/" . ROOT_URI . '/static/img/';
+?>
+<a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="logo" src=<?php echo "$imgDirectory/infinitemeasures-logo.png"; ?> alt="logo"></a>
 <div id="background">
     Hello, Friend!
     <p id="p">Enter your personal details and start
