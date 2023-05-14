@@ -174,6 +174,78 @@ class User
     }
 
     /**
+     * Searches users from the database.
+     * @param array $searchParams An array containing the search parameters.
+     * @return array An array containing all the users found.
+     */
+    public static function search(array $searchParams): array
+    {
+        $query = 'SELECT * FROM USERS WHERE email LIKE :email AND firstname LIKE :firstname AND lastname LIKE :lastname AND (permissionLevel >= :permissionLevelMin AND permissionLevel <= :permissionLevelMax);';
+
+        $preparedStatement = Connection::getPDO()->prepare($query);
+
+        if($searchParams['email'] != '')
+        {
+            $email = '%' . $searchParams['email'] . '%';
+            error_log("binding :email to $email");
+            $preparedStatement->bindParam('email', $email);
+        }
+        else
+        {
+            error_log("binding :email to %");
+            $preparedStatement->bindValue('email', '%');
+        }
+        if($searchParams['firstname'] != '')
+        {
+            $firstname = '%' . $searchParams['firstname'] . '%';
+            error_log("binding :firstname to $firstname");
+            $preparedStatement->bindParam('firstname', $firstname);
+        }
+        else
+        {
+            error_log("binding :firstname to %");
+            $preparedStatement->bindValue('firstname', '%');
+        }
+        if($searchParams['lastname'] != '')
+        {
+            $lastname = '%' . $searchParams['lastname'] . '%';
+            error_log("binding :lastname to $lastname");
+            $preparedStatement->bindParam('lastname', $lastname);
+        }
+        else
+        {
+            error_log("binding :lastname to %");
+            $preparedStatement->bindValue('lastname', '%');
+        }
+        if($searchParams['permissionLevel'] > 0 && $searchParams['permissionLevel'] < 4)
+        {
+            $permissionLevel = $searchParams['permissionLevel'];
+            error_log("binding :permissionLevelMin to $permissionLevel");
+            error_log("binding :permissionLevelMax to $permissionLevel");
+            $preparedStatement->bindParam('permissionLevelMin', $permissionLevel, PDO::PARAM_INT);
+            $preparedStatement->bindParam('permissionLevelMax', $permissionLevel, PDO::PARAM_INT);
+        }
+        else
+        {
+            error_log("binding :permissionLevelMin to 1");
+            $preparedStatement->bindValue('permissionLevelMin', 1, PDO::PARAM_INT);
+            error_log("binding :permissionLevelMax to 3");
+            $preparedStatement->bindValue('permissionLevelMax', 3, PDO::PARAM_INT);
+        }
+
+        try {
+            $preparedStatement->execute();
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+        }
+        catch (PDOException $e) {
+            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            error_log("PDO EXCEPTION: {$e->getMessage()}");
+            return [];
+        }
+        return $usersArray;
+    }
+
+    /**
      * Updates this user's permission level with the provided permission level.
      * @param $permissionLevel int The new permission level to apply.
      * @return bool True if the permission level has been updated, false otherwise.

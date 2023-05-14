@@ -48,6 +48,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/ban' && $method === 'P
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/delete' && $method === 'POST') {
     UserManagementController::deleteUser();
 }
+// POST endpoint used to search users from the user management page
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/search' && $method === 'POST') {
+    UserManagementController::searchUser();
+}
 else if($uri === '/'.ROOT_URI.'index.php/test' && $method === 'GET') {
     require('test.php');
 }

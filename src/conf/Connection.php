@@ -3,9 +3,9 @@
 class Connection
 {
     static private $hostname = 'localhost';
-    static private $database = 'DATABASE_NAME';
-    static private $login = 'USER_LOGIN';
-    static private $password = 'USER_PASSWORD';
+    static private $database = 'portan';
+    static private $login = 'portanuser';
+    static private $password = 'portanpassword';
     static private $encoding = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
     static private $pdo;
 

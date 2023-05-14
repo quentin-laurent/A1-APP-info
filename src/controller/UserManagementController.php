@@ -22,6 +22,11 @@ class UserManagementController
             require('src/view/403.html');
             exit;
         }
+        if(!isset($_SESSION['users_search']))
+            $users = User::fetchAllUsers();
+        else
+            $users = unserialize($_SESSION['users_search']);
+        unset($_SESSION['users_search']);
         require('src/view/userManagement.php');
     }
 
@@ -146,5 +151,26 @@ class UserManagementController
             $_SESSION['errorMessage'] = "Erreur lors de la suppression de l'utilisateur {$user->getEmail()}.";
             header("Location: http://$hostname/".ROOT_URI.'index.php/backoffice/users?error');
         }
+    }
+
+    public static function searchUser(): void
+    {
+        if(!isset($_SESSION['email']))
+        {
+            header("HTTP/1.1 401 Unauthorized");
+            require('src/view/401.html');
+            exit;
+        }
+        else if(User::fetchFromEmail($_SESSION['email'])->getPermissionLevel() < ADMINISTRATOR)
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
+            exit;
+        }
+
+        $_SESSION['users_search'] = serialize(User::search($_POST));
+        error_log(print_r($_SESSION['users_search']));
+        $hostname = $_SERVER['HTTP_HOST'];
+        header("Location: http://$hostname/".ROOT_URI.'index.php/backoffice/users');
     }
 }

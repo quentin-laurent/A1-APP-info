@@ -20,6 +20,21 @@
         if(isset($_GET['error']) && isset($_SESSION['errorMessage']))
             echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
     ?>
+
+    <form id="search" action="users/search" method="POST">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="firstname" placeholder="Prenom">
+        <input type="text" name="lastname" placeholder="Nom">
+        <label for="role">Rôle:</label>
+        <select id="role" name="permissionLevel">
+            <option value=0 selected>Tous</option>
+            <option value=1>Utilisateur</option>
+            <option value=2>Gestionnaire</option>
+            <option value=3>Administrateur</option>
+        </select>
+        <button type="submit">Rechercher</button>
+    </form>
+
     <table>
         <tr>
             <th>Email</th>
@@ -31,7 +46,6 @@
             <th>Actions</th>
         </tr>
         <?php
-        $users = User::fetchAllUsers();
 
         $i = 1;
         foreach ($users as $user)
