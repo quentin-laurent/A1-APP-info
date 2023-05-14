@@ -82,7 +82,7 @@
                     <option value=2>Gestionnaire</option>
                     <option value=3 selected>Administrateur</option>
                 ';
-            $lastVisit = date_format(date_create($user->getLastVisit()), 'd/m/Y');
+            $lastVisit = ($user->getLastVisit() != '') ? date_format(date_create($user->getLastVisit()), 'd/m/Y') : 'Jamais';
             $bannedValue = ($user->isBanned()) ? 'false' : 'true';
             $bannedText = ($user->isBanned()) ? 'Débannir' : 'Bannir';
             echo "
