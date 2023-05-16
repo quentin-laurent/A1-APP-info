@@ -16,9 +16,14 @@
     <h1>Gestion des utilisateurs</h1>
     <?php
         if(isset($_GET['success']) && isset($_SESSION['successMessage']))
+        {
             echo "<p id=success-message>{$_SESSION['successMessage']}</p>";
-        if(isset($_GET['error']) && isset($_SESSION['errorMessage']))
+            unset($_SESSION['successMessage']);
+        }
+        if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
             echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
+            unset($_SESSION['successMessage']);
+        }
     ?>
 
     <form id="search" action="users/search" method="POST">
