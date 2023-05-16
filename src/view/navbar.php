@@ -21,7 +21,7 @@
                         <a href='#' data-dropdown-link>Backoffice</a>
                         <div class='dropdown-menu dropdown-links'>
                             <a href='$rootURL/backoffice/users'>Gestion utilisateurs</a>
-                            <a href='#'>Gestion FAQ</a>
+                            <a href='$rootURL/backoffice/faq'>Gestion FAQ</a>
                             <a href='#'>Gestion Tickets</a>
                         </div>
                     </li>
@@ -33,7 +33,7 @@
                     <li class='dropdown' data-dropdown>
                         <a href='#' data-dropdown-link>Backoffice</a>
                         <div class='dropdown-menu dropdown-links'>
-                            <a href='#'>Gestion FAQ</a>
+                            <a href='$rootURL/backoffice/faq'>Gestion FAQ</a>
                             <a href='#'>Gestion Tickets</a>
                         </div>
                     </li>

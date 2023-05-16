@@ -3,6 +3,9 @@ session_start();
 require_once('src/controller/LoginController.php');
 require_once('src/controller/HomeController.php');
 require_once('src/controller/UserManagementController.php');
+require_once('src/model/FAQ.php');
+require_once('src/controller/FAQController.php');
+require_once('src/controller/FAQManagementController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -52,8 +55,21 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/delete' && $method ===
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/users/search' && $method === 'POST') {
     UserManagementController::searchUser();
 }
-else if($uri === '/'.ROOT_URI.'index.php/test' && $method === 'GET') {
-    require('test.php');
+// GET endpoint for the FAQ
+else if($uri === '/'.ROOT_URI.'index.php/faq' && $method === 'GET') {
+    FAQController::displayFAQPage();
+}
+// GET endpoint for the FAQ management
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq' && $method === 'GET') {
+    FAQManagementController::displayFAQManagementPage();
+}
+// GET endpoint to create a new FAQ
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/add' && $method === 'GET') {
+    FAQManagementController::displayFAQAddPage();
+}
+// POST endpoint used to add a new FAQ
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/add' && $method === 'POST') {
+    FAQManagementController::addFAQ();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

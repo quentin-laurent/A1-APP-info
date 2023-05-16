@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+    font-family: Poppins, 'sans-serif';
+    margin-top: 2%;
+}
+
+form {
+    text-align: center;
+    margin: 2% 25% auto 25%;
+}
+
+input, textarea {
+    width: 100%;
+    margin-bottom: 2%;
+    padding: 1%;
+}
