@@ -71,6 +71,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/add' && $method === 'GET
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/add' && $method === 'POST') {
     FAQManagementController::addFAQ();
 }
+// POST endpoint used to delete a FAQ
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/delete' && $method === 'POST') {
+    FAQManagementController::deleteFAQ();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

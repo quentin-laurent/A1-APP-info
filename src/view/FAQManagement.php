@@ -45,7 +45,7 @@
                 <td>{$faq->getAnswer()}</td>
                 <td>{$author->getFirstname()} {$author->getLastname()}</td>
                 <td>
-                    <a href='#'><button type=button>Modifier</button></a>
+                    <a href='faq/add?id={$faq->getId()}'><button type=button>Modifier</button></a>
                     <form action=faq/delete method=POST><button class=delete-button type=submit name=id value={$faq->getId()}>Supprimer</button></form>
                 </td>
             </tr>
