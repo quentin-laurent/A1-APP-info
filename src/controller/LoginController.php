@@ -14,6 +14,13 @@ class LoginController
      */
     public static function displayLoginPage(): void
     {
+        if(isset($_SESSION['email']))
+        {
+            $hostname = $_SERVER['HTTP_HOST'];
+            header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            exit;
+        }
+
         require('src/view/login.php');
     }
 
