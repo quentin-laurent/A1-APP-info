@@ -6,6 +6,8 @@ require_once('src/controller/UserManagementController.php');
 require_once('src/model/FAQ.php');
 require_once('src/controller/FAQController.php');
 require_once('src/controller/FAQManagementController.php');
+require_once('src/model/Ticket.php');
+require_once('src/controller/TicketController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -74,6 +76,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/add' && $method === 'POS
 // POST endpoint used to delete a FAQ
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/delete' && $method === 'POST') {
     FAQManagementController::deleteFAQ();
+}
+// GET endpoint for the Tickets page
+else if($uri === '/'.ROOT_URI.'index.php/tickets' && $method === 'GET') {
+    TicketController::displayTicketsPage();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

@@ -1,0 +1,131 @@
+body {
+    font-family: Poppins, 'sans-serif';
+}
+
+h1 {
+    text-align: center;
+    margin: 2% auto 2% auto;
+}
+
+#add-ticket {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+#add-ticket button {
+    padding: 1%;
+    background-color: #1B998B;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+#add-ticket button:hover {
+    filter: brightness(110%);
+}
+
+#tickets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.ticket {
+    margin: 2%;
+    padding: 2%;
+    border: solid 2px black;
+    border-radius: 30px;
+    background-color: #D9D9D9;
+}
+
+.ticket-title {
+    font-family: Poppins, 'sans-serif';
+    font-size: Larger;
+    font-weight: bold;
+}
+
+.ticket-tags {
+    margin: 1% auto 1% auto;
+}
+
+.tag {
+    font-size: x-small;
+    margin-right: 1%;
+    border-radius: 30px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    padding: 0.5% 1.5% 0.5% 1.5%;
+    color: white;
+    font-weight: bold;
+}
+
+.tag.bug {
+    background-color: #EC5800;
+}
+
+.tag.urgent {
+    background-color: #D22B2B;
+}
+
+.desc {
+    font-size: x-large;
+    font-weight: bold;
+    margin: 2% auto 2% auto;
+}
+
+.ticket-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.ticket-author {
+    display: flex;
+    font-size: Small;
+    font-weight: bold;
+}
+
+.ticket-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.ticket-button {
+    font-weight: bold;
+    margin: auto 2% auto 2%;
+    padding: 4% 8% 4% 8%;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.ticket-button:hover {
+    filter: brightness(110%);
+}
+
+.ticket-button.more {
+    background-color: #F8F1FF;
+    color: black;
+}
+
+.ticket-button.answer {
+    background-color: #DECDF5;
+    color: black;
+}
+
+.ticket-button.close {
+    background-color: #1B998B;
+    color: white;
+}

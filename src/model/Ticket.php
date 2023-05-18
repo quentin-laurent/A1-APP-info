@@ -7,8 +7,8 @@ class Ticket
     private string $title;
     private string $description;
     private bool $isOpen;
-    private string $authorEmail;
-    private string $assigneeEmail;
+    private ?string $authorEmail;
+    private ?string $assigneeEmail;
 
     // Constructor
     public function __construct(int $id, string $title, string $description, bool $isOpen, string $authorEmail, string $assigneeEmail)
@@ -23,32 +23,32 @@ class Ticket
 
     // Getters & Setters
     #region Getters & Setters
-    public function getId()
+    public function getId(): int
     {
         return htmlspecialchars($this->id);
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return htmlspecialchars($this->title);
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return htmlspecialchars($this->description);
     }
 
-    public function getIsOpen()
+    public function getIsOpen(): bool
     {
         return htmlspecialchars($this->isOpen);
     }
 
-    public function getAuthorEmail()
+    public function getAuthorEmail(): string
     {
         return htmlspecialchars($this->authorEmail);
     }
 
-    public function getAssigneeEmail()
+    public function getAssigneeEmail(): string
     {
         return htmlspecialchars($this->assigneeEmail);
     }
@@ -66,6 +66,27 @@ class Ticket
         $ticketsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
 
         return $ticketsArray;
+    }
+
+    /**
+     * Fetches all the Tickets from the specified author.
+     * @param string $authorEmail The email of the author.
+     * @return array An array containing all the Tickets created by the specified author.
+     */
+    public static function fetchFromAuthor(string $authorEmail): array
+    {
+        $query = 'SELECT * FROM TICKET WHERE authorEmail = :authorEmail;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('authorEmail', $authorEmail);
+
+        try {
+            $preparedStatement->execute();
+            return $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
+        }
+        catch (PDOException $e) {
+            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+        }
+        return array();
     }
 
     public function __toString(): string
