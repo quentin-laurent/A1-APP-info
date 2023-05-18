@@ -81,6 +81,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/faq/delete' && $method === '
 else if($uri === '/'.ROOT_URI.'index.php/tickets' && $method === 'GET') {
     TicketController::displayTicketsPage();
 }
+// GET endpoint to create a new Ticket
+else if($uri === '/'.ROOT_URI.'index.php/tickets/add' && $method === 'GET') {
+    TicketController::displayTicketAddPage();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

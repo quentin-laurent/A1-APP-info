@@ -89,6 +89,21 @@ class Ticket
         return array();
     }
 
+    /**
+     * Returns the highest Ticket id from the database.
+     * @return int The highest Ticket id from the database.
+     */
+    public static function getHighestId(): int
+    {
+        $query = 'SELECT MAX(id) FROM TICKET;';
+        $result = Connection::getPDO()->query($query);
+        $res = $result->fetch();
+
+        if(!is_null($res))
+            return $res[0];
+        return 0;
+    }
+
     public function __toString(): string
     {
         return "[TICKET: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
