@@ -1,16 +1,26 @@
 @charset "UTF-8";
 
 body {
-    padding-left: 10%;
-    padding-right: 10%;
     overflow-x: hidden;
 }
 
-img {
+header {
+    z-index: 10;
+    position: fixed;
+    width: 85%;
+}
+
+#page {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#logo {
     margin-top: 20px;
     margin-left: -11%;
-    width: 150px;
-    z-index: 10;
+    width: 130px;
+    height: 250px;
+    z-index: -1;
     position: relative;
 }
 
@@ -35,14 +45,14 @@ h1 {
     font-family: "Century Gothic";
 }
 
-p {
+#page p {
     font-size: x-large;
     font-weight: 1;
     margin: 0;
-    }
+}
 
 #hLogIn {
-    margin-top: 200px;
+    margin-top: 130px;
 }
 
 #hCreateAccount {
@@ -60,7 +70,6 @@ input {
 }
 
 .grid-container {
-    margin-top: -8%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20%;
@@ -103,13 +112,14 @@ input {
     margin-top: -20px;
     width: 120px;
     cursor: pointer;
+    text-align: center;
 }
 
 .SignIn:hover {
     background-color: #17897ecc;
 }
 
-a {
+#forgotPassword {
     font-size: 12px;
     font-family: monospace;
     font-weight: lighter;
@@ -126,7 +136,7 @@ a {
     text-align: center;
 }
 
-a:hover {
+#forgotPassword:hover {
     text-decoration: underline;
 }
 

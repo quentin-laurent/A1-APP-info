@@ -12,14 +12,14 @@
             logo = document.getElementById('logo');
             var background = document.getElementById('background');
             background.style.zIndex = '0';
-            document.getElementById('animationButton').innerText = 'SIGN UP';
+            document.getElementById('animationButton').innerText = 'Inscription';
 
             if (left) {
                 left = false;
                 document.getElementById('right').style.visibility = 'hidden';                     
                 document.getElementById('hCreateAccount').style.visibility = 'hidden';
                 background.style.paddingLeft= '0%'
-                logo.src='../static/img/infinitemeasures-logo.png';
+                logo.src='../static/img/hidden.png';
                 var margin = -15;
                 setInterval(moveDiv, 5);
 
@@ -31,8 +31,8 @@
                 }
                 setTimeout(continueExecution, 200);
                 function continueExecution(){
-                    background.innerHTML = background.innerHTML.replace('Welcome Back!', 'Hello, Friend!');
-                    document.getElementById('p').innerHTML = 'Enter your personal details and start<br>your journey with us';
+                    background.innerHTML = background.innerHTML.replace('De retour !', 'Bienvenue !');
+                    document.getElementById('p').innerHTML = 'Remplissez le formulaire et<br>commencez votre aventure !';
                     document.getElementById('left').style.visibility = 'visible';
                     document.getElementById('hLogIn').style.visibility = 'visible';
                 }
@@ -42,7 +42,7 @@
                 document.getElementById('left').style.visibility = 'hidden';           
                 document.getElementById('hLogIn').style.visibility = 'hidden';
                 background.style.paddingLeft= '3%';
-                document.getElementById('animationButton').innerText = 'SIGN IN';
+                document.getElementById('animationButton').innerText = 'Connexion';
 
                 var margin = 38;        
                 setInterval(moveDiv, 5);
@@ -54,11 +54,11 @@
                 }
                 setTimeout(continueExecution, 200);
                 function continueExecution() {
-                    background.innerHTML = background.innerHTML.replace('Hello, Friend!', 'Welcome Back!');
-                    document.getElementById('p').innerHTML = 'To stay connected with us please <br>fill in your credentials';
+                    background.innerHTML = background.innerHTML.replace('Bienvenue !', 'De retour !');
+                    document.getElementById('p').innerHTML = 'Saisissez vos identifiants <br>pour vous connecter !';
                     document.getElementById('hCreateAccount').style.visibility = 'visible';
                     document.getElementById('right').style.visibility = 'visible'; 
-                    logo.src='../static/img/infinitemeasures-logo.png';
+                    logo.src='../static/img/hidden.png';
                 }
             }
         }
@@ -71,52 +71,58 @@
             document.getElementById('pass-field').type = 'password';
         }
     </script>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <script src="../static/js/navbar.js"></script>
 </head>
+
+<?php include('src/view/navbar.php'); ?>
+
 <body>
+<div id="page">
 <?php
     $hostname = $_SERVER['HTTP_HOST'];
     $imgDirectory = $imgDirectory = "http://$hostname/" . ROOT_URI . '/static/img/';
 ?>
-<a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="logo" src=<?php echo "$imgDirectory/infinitemeasures-logo.png"; ?> alt="logo"></a>
+<a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>><img id="logo" src=<?php echo "$imgDirectory/hidden.png"; ?> alt="logo"></a>
 <div id="background">
-    Hello, Friend!
-    <p id="p">Enter your personal details and start
-        <br> your journey with us</p>
-    <button id="animationButton" class="submit signUp" onmousedown="animation()">SIGN UP</button>
+    Bienvenue !
+    <p id="p">Remplissez le formulaire et
+        <br> commencez votre aventure !</p>
+    <button id="animationButton" class="submit signUp" onmousedown="animation()">Inscription</button>
 </div>
 
 <div class="grid-container">
-    <h1 id="hLogIn">Log in</h1>
+    <h1 id="hLogIn">Connexion</h1>
     <form action='./login/signin' method='POST' id="left" class="grid">
         <input type="text" name="email" class="first" placeholder="Email" required/><br>
-        <input type="password" name="password"  class="second login" id="pass-field" placeholder="Password" required/><br>
-        <a href=" " id="forgotPassword">Forgot my password</a>
+        <input type="password" name="password"  class="second login" id="pass-field" placeholder="Mot de passe" required/><br>
+        <a href=" " id="forgotPassword">Mot de passe oublié ?</a>
         <?php
             if(isset($_GET['error']) && isset($_SESSION['errorMessage']))
                 echo '<p id=error-message>'.$_SESSION['errorMessage'].'</p>';
         ?>
-        <input class="SignIn submit" type="submit" name="submitSignIn" value="Sign In"/>
+        <input class="SignIn submit" type="submit" name="submitSignIn" value="Valider"/>
     </form>
 
-    <h1 id="hCreateAccount">Create Account</h1>
+    <h1 id="hCreateAccount">Inscription</h1>
     <form action="./login/signup" method="POST" id="right" class="grid">
-        <input type="text" id="firstName" name="firstName" class="first" placeholder="First Name" required><br>
+        <input type="text" id="firstName" name="firstName" class="first" placeholder="Prénom" required><br>
 
-        <input type="text" id="lastName" name="lastName" class="second" placeholder="Second Name" required><br>
+        <input type="text" id="lastName" name="lastName" class="second" placeholder="Nom" required><br>
 
-        <input type="date" id="birthday" name="birthday" class="third" placeholder="Birthday" required><br>
+        <input type="date" id="birthday" name="birthday" class="third" placeholder="Date de naissance" required><br>
 
         <input type="email" id="email" name="email" class="fourth" placeholder="Email" required><br>
 
-        <input type="tel" id="phoneNumber" name="phoneNumber" class="fifth" placeholder="Phone number (optional)"><br>
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="fifth" placeholder="Téléphone (facultatif)"><br>
 
-        <input type="password" id="password" name="password" class="sixth" placeholder="Password" required><br>
+        <input type="password" id="password" name="password" class="sixth" placeholder="Mot de passse" required><br>
 
-        <input type="password" id="passwordVerify" name="passwordVerify" class="seventh" placeholder="Verify password" required><br>
+        <input type="password" id="passwordVerify" name="passwordVerify" class="seventh" placeholder="Mot de passe (confirmation)" required><br>
 
-        <input class="create submit" type="submit" name="submitCreateAccount"  value="Sign Up">
+        <input class="create submit" type="submit" name="submitCreateAccount"  value="Valider">
     </form>
 </div>
-
+</div>
 </body>
 </html>
