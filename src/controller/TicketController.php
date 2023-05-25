@@ -136,14 +136,14 @@ class TicketController
         }
         if(!isset($_GET['id']) || !is_numeric($_GET['id']))
         {
-            header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            header("Location: http://$hostname/".ROOT_URI.'index.php/tickets');
             exit;
         }
         $ticket = Ticket::fetchFromId($_GET['id']);
 
         if(is_null($ticket))
         {
-            header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            header("Location: http://$hostname/".ROOT_URI.'index.php/tickets');
             exit;
         }
 
