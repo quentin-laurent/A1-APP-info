@@ -35,7 +35,17 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
             $author = User::fetchFromEmail($ticket->getAuthorEmail());
             echo "
                 <div class=ticket>
-                    <p class=ticket-title>Ticket n°{$ticket->getId()}: {$ticket->getTitle(ENT_NOQUOTES)}</p>
+                    <div id=ticket-intro>
+                        <p class=ticket-title>Ticket n°{$ticket->getId()}: {$ticket->getTitle(ENT_NOQUOTES)}</p>
+                ";
+            if($ticket->isOpen())
+                echo "<p class='ticket-status open'>[Ouvert]</p>";
+            else if($ticket->isResolved())
+                echo "<p class='ticket-status resolved'>[Résolu]</p>";
+            else
+                echo "<p class='ticket-status closed'>[Fermé]</p>";
+            echo "
+                    </div>
                     <hr>
                     <div class=ticket-tags>
                     ";

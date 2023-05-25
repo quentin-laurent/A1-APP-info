@@ -16,7 +16,17 @@
     <hr>
     <?php $author = User::fetchFromEmail($ticket->getAuthorEmail()); ?>
     <div class=ticket>
-        <p class=ticket-title>Ticket n°<?php echo $ticket->getId() ?>: <?php echo $ticket->getTitle(ENT_NOQUOTES) ?></p>
+        <div id="ticket-intro">
+            <p class=ticket-title>Ticket n°<?php echo $ticket->getId() ?>: <?php echo $ticket->getTitle(ENT_NOQUOTES) ?></p>
+            <?php
+                if($ticket->isOpen())
+                    echo "<p class='ticket-status open'>[Ouvert]</p>";
+                else if($ticket->isResolved())
+                    echo "<p class='ticket-status resolved'>[Résolu]</p>";
+                else
+                    echo "<p class='ticket-status closed'>[Fermé]</p>";
+            ?>
+        </div>
         <hr>
         <div class=ticket-tags>
             <?php

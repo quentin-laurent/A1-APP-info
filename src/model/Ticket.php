@@ -7,16 +7,18 @@ class Ticket
     private string $title;
     private string $description;
     private bool $isOpen;
+    private bool $isResolved;
     private ?string $authorEmail;
     private ?string $assigneeEmail;
 
     // Constructor
-    public function __construct(string $title, string $description, bool $isOpen, ?string $authorEmail, ?string $assigneeEmail)
+    public function __construct(string $title, string $description, bool $isOpen, bool $isResolved, ?string $authorEmail, ?string $assigneeEmail)
     {
         $this->id = NULL;
         $this->title = $title;
         $this->description = $description;
         $this->isOpen = $isOpen;
+        $this->isResolved = $isResolved;
         $this->authorEmail = $authorEmail;
         $this->assigneeEmail = $assigneeEmail;
     }
@@ -45,6 +47,29 @@ class Ticket
         return htmlspecialchars($this->isOpen);
     }
 
+    /**
+     * Convenient alias for {@see getIsOpen()}.
+     * @return bool: True if this Ticket is open, false otherwise.
+     */
+    public function isOpen(): bool
+    {
+        return $this->getIsOpen();
+    }
+
+    public function getIsResolved(): bool
+    {
+        return htmlspecialchars($this->isResolved);
+    }
+
+    /**
+     * Convenient alias for {@see getIsResolved()}.
+     * @return bool: True if this Ticket has been resolved, false otherwise.
+     */
+    public function isResolved(): bool
+    {
+        return $this->getIsResolved();
+    }
+
     public function getAuthorEmail(): string
     {
         return htmlspecialchars($this->authorEmail);
@@ -65,7 +90,7 @@ class Ticket
     {
         $query = 'SELECT * FROM TICKET;';
         $result = Connection::getPDO()->query($query);
-        $ticketsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5]);
+        $ticketsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
 
         return $ticketsArray;
     }
@@ -83,7 +108,7 @@ class Ticket
 
         try {
             $preparedStatement->execute();
-            $ticketsArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5]);
+            $ticketsArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
             if(!empty($ticketsArray))
                 return $ticketsArray[0];
             return null;
@@ -107,7 +132,7 @@ class Ticket
 
         try {
             $preparedStatement->execute();
-            return $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5]);
+            return $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Ticket', [1, 2, 3, 4, 5, 6]);
         }
         catch (PDOException $e) {
             echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";

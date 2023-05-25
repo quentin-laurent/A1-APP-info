@@ -56,10 +56,31 @@ body > hr {
     background-color: #e9e9e9;
 }
 
+#ticket-intro {
+    display: flex;
+    justify-content: space-between;
+}
+
 .ticket-title {
     font-family: Poppins, 'sans-serif';
     font-size: Larger;
     font-weight: bold;
+}
+
+.ticket-status {
+    font-weight: bold;
+}
+
+.ticket-status.open {
+    color: cornflowerblue;
+}
+
+.ticket-status.resolved {
+    color: green;
+}
+
+.ticket-status.closed {
+    color: red;
 }
 
 .ticket-tags {
