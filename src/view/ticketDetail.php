@@ -42,7 +42,7 @@
             <div class=ticket-buttons>
                 <?php
                     if($ticket->isOpen())
-                        echo "<a class='ticket-button modify' href='add?id=<?php echo $ticket->getId() ?>'>Modifier</a>";
+                        echo "<a class='ticket-button modify' href='add?id={$ticket->getId()}'>Modifier</a>";
                     else
                         echo "<button class='ticket-button modify disabled' disabled>Modifier</button>"
                 ?>
