@@ -7,6 +7,7 @@ require_once('src/model/FAQ.php');
 require_once('src/controller/FAQController.php');
 require_once('src/controller/FAQManagementController.php');
 require_once('src/model/Ticket.php');
+require_once('src/model/Tag.php');
 require_once('src/controller/TicketController.php');
 
 const ROOT_URI = 'portan/';
@@ -84,6 +85,10 @@ else if($uri === '/'.ROOT_URI.'index.php/tickets' && $method === 'GET') {
 // GET endpoint to create a new Ticket
 else if($uri === '/'.ROOT_URI.'index.php/tickets/add' && $method === 'GET') {
     TicketController::displayTicketAddPage();
+}
+// POST endpoint used to add a new Ticket
+else if($uri === '/'.ROOT_URI.'index.php/tickets/add' && $method === 'POST') {
+    TicketController::addTicket();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

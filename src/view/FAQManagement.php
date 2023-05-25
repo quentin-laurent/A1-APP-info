@@ -23,7 +23,7 @@
     }
     if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
         echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
-        unset($_SESSION['successMessage']);
+        unset($_SESSION['errorMessage']);
     }
 ?>
 
