@@ -45,7 +45,7 @@ class LoginController
             LoginController::signIn($email, $password);
         else
         {
-            $_SESSION['errorMessage'] = 'An error occurred, please try again.';
+            $_SESSION['errorMessage'] = 'Une erreur inconnue est survenue.';
             header("Location: http://$hostname/" . ROOT_URI . 'index.php/login?error');
         }
     }
@@ -79,12 +79,12 @@ class LoginController
         }
         else if($user != null && $user->isBanned())
         {
-            $_SESSION['errorMessage'] = 'You have been banned.';
+            $_SESSION['errorMessage'] = 'Ce compte est banni.';
             header("Location: http://$hostname/".ROOT_URI.'index.php/login?error');
         }
         else
         {
-            $_SESSION['errorMessage'] = 'Invalid credentials';
+            $_SESSION['errorMessage'] = 'Indentifiants incorrects';
             header("Location: http://$hostname/".ROOT_URI.'index.php/login?error');
         }
     }
