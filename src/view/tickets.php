@@ -62,7 +62,10 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
                         <p class=ticket-author>Auteur: {$author->getFirstname()} {$author->getLastname()}</p>
                         <div class=ticket-buttons>
                             <a class='ticket-button more' href='tickets/detail?id={$ticket->getId()}'>Détail</a>
-                            <a class='ticket-button modify' href='tickets/add?id={$ticket->getId()}'>Modifier</a>
+                 ";
+            if($ticket->isOpen())
+                echo "<a class='ticket-button modify' href='tickets/add?id={$ticket->getId()}'>Modifier</a>";
+            echo "
                         </div>
                     </div>
                 </div>

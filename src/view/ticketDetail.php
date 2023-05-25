@@ -40,7 +40,13 @@
         <div class=ticket-footer>
             <p class=ticket-author>Auteur: <?php echo "{$author->getFirstname()} {$author->getLastname()}";?></p>
             <div class=ticket-buttons>
-                <a class='ticket-button modify' href='add?id=<?php echo $ticket->getId() ?>'>Modifier</a>
+                <?php
+                    if($ticket->isOpen())
+                        echo "<a class='ticket-button modify' href='add?id=<?php echo $ticket->getId() ?>'>Modifier</a>";
+                    else
+                        echo "<button class='ticket-button modify disabled' disabled>Modifier</button>"
+                ?>
+
             </div>
         </div>
     </div>

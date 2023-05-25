@@ -157,6 +157,11 @@ body > hr {
     filter: brightness(110%);
 }
 
+.ticket-button.disabled:hover {
+    filter: brightness(100%);
+    cursor: not-allowed;
+}
+
 .ticket-button.more {
     background-color: #F8F1FF;
     color: black;
