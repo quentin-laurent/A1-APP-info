@@ -67,7 +67,12 @@
             <label for="ticket-description-input" class="desc">Description:</label>
             <textarea id="ticket-description-input" name="description" rows="10" placeholder="Description" required><?php if(isset($ticket)) echo $ticket->getDescription(); ?></textarea>
             <div class="ticket-footer">
-                <?php $author = User::fetchFromEmail($_SESSION['email']) ?>
+                <?php
+                    if(isset($ticket))
+                        $author = User::fetchFromEmail($ticket->getAuthorEmail());
+                    else
+                        $author = User::fetchFromEmail($_SESSION['email'])
+                ?>
                 <p class="ticket-author">Auteur: <?php echo "{$author->getFirstname()} {$author->getLastname()}" ?></p>
                 <button class="ticket-button create" type="submit"><?php if(isset($ticket)) echo "Valider"; else echo "Créer"; ?></button>
             </div>

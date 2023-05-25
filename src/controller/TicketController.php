@@ -12,8 +12,8 @@ class TicketController
     {
         if(!isset($_SESSION['email']))
         {
-            header("HTTP/1.1 401 Unauthorized");
-            require('src/view/401.html');
+            $hostname = $_SERVER['HTTP_HOST'];
+            header("Location: http://$hostname/".ROOT_URI.'index.php/login');
             exit;
         }
 
@@ -31,6 +31,15 @@ class TicketController
         {
             header("HTTP/1.1 401 Unauthorized");
             require('src/view/401.html');
+            exit;
+        }
+
+        ((isset($_GET['id'])) && (is_numeric($_GET['id']))) ? $ticket = Ticket::fetchFromId($_GET['id']) : $ticket = null;
+
+        if(isset($ticket) && $ticket->getAuthorEmail() != $_SESSION['email'])
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
             exit;
         }
         require('src/view/addTicket.php');
@@ -77,6 +86,13 @@ class TicketController
      */
     private static function updateTicket(Ticket $ticket): void
     {
+        if($ticket->getAuthorEmail() != $_SESSION['email'])
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
+            exit;
+        }
+
         $success = $ticket->update($_POST['title'], $_POST['description'], $_POST['tag-type'], $_POST['tag-priority']);
 
         $hostname = $_SERVER['HTTP_HOST'];
@@ -115,6 +131,13 @@ class TicketController
         if(is_null($ticket))
         {
             header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            exit;
+        }
+
+        if($ticket->getAuthorEmail() != $_SESSION['email'])
+        {
+            header("HTTP/1.1 403 Forbidden");
+            require('src/view/403.html');
             exit;
         }
 
