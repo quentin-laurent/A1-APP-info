@@ -13,6 +13,7 @@
 
 <body>
 <h1>Mes tickets</h1>
+<hr>
 <div id="add-ticket"><a href="tickets/add   "><button type="button">Créer un nouveau ticket</button></a></div>
 
 <?php

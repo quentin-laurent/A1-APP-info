@@ -20,9 +20,9 @@
 <body>
     <?php
     if(!is_null($ticket))
-        echo '<h1>Modifier un ticket</h1>';
+        echo '<h1>Modifier un ticket</h1><hr>';
     else
-        echo '<h1>Nouveau ticket</h1>';
+        echo '<h1>Nouveau ticket</h1><hr>';
     ?>
     <form action="add" method="POST">
         <?php

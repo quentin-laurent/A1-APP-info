@@ -3,8 +3,13 @@ body {
 }
 
 h1 {
-    text-align: center;
-    margin: 2% auto 2% auto;
+    text-align: left;
+    margin: 2% auto 1% 2%;
+    color: #1B998B;
+}
+
+body > hr {
+    margin: 0 2% 2% 2%;
 }
 
 .ticket {
