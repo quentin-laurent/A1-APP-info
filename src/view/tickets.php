@@ -37,16 +37,20 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
                     <p class=ticket-title>Ticket n°{$ticket->getId()}: {$ticket->getTitle(ENT_NOQUOTES)}</p>
                     <hr>
                     <div class=ticket-tags>
-                        <span class='tag bug'>bug</span>
-                        <span class='tag urgent'>urgent</span>
-                    </div>
+                    ";
+
+            $tags = $ticket->getTags();
+            foreach ($tags as $tag)
+                echo "<span class='tag {$tag->getName()}'>{$tag->getName()}</span>";
+
+            echo "
+                </div>
                     <p class=desc>Description:</p>
-                    <p class=ticket-description>{$ticket->getDescription()}</p>
+                    <p class=ticket-description>{$ticket->getDescription(true)}</p>
                     <div class=ticket-footer>
                         <p class=ticket-author>Auteur: {$author->getFirstname()} {$author->getLastname()}</p>
                         <div class=ticket-buttons>
-                            <a class='ticket-button more' href='#'>Détail</a>
-                            <a class='ticket-button answer' href='#'>Répondre</a>
+                            <a class='ticket-button more' href='tickets/detail?id={$ticket->getId()}'>Détail</a>
                             <a class='ticket-button modify' href='tickets/add?id={$ticket->getId()}'>Modifier</a>
                         </div>
                     </div>

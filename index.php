@@ -90,6 +90,10 @@ else if($uri === '/'.ROOT_URI.'index.php/tickets/add' && $method === 'GET') {
 else if($uri === '/'.ROOT_URI.'index.php/tickets/add' && $method === 'POST') {
     TicketController::addTicket();
 }
+// GET endpoint to display the detail of a Ticket
+else if($uri === '/'.ROOT_URI.'index.php/tickets/detail' && $method === 'GET') {
+    TicketController::displayTicketDetailPage();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

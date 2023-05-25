@@ -91,4 +91,33 @@ class TicketController
             header("Location: http://$hostname/".ROOT_URI.'index.php/tickets?error');
         }
     }
+
+    /**
+     * Renders the view containing the detail of a Ticket.
+     * @return void
+     */
+    public static function displayTicketDetailPage(): void
+    {
+        $hostname = $_SERVER['HTTP_HOST'];
+        if(!isset($_SESSION['email']))
+        {
+            header("HTTP/1.1 401 Unauthorized");
+            require('src/view/401.html');
+            exit;
+        }
+        if(!isset($_GET['id']) || !is_numeric($_GET['id']))
+        {
+            header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            exit;
+        }
+        $ticket = Ticket::fetchFromId($_GET['id']);
+
+        if(is_null($ticket))
+        {
+            header("Location: http://$hostname/".ROOT_URI.'index.php/home');
+            exit;
+        }
+
+        require('src/view/ticketDetail.php');
+    }
 }

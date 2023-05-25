@@ -33,8 +33,10 @@ class Ticket
         return htmlspecialchars($this->title, $flags);
     }
 
-    public function getDescription(): string
+    public function getDescription($withBr=false): string
     {
+        if($withBr)
+            return nl2br(htmlspecialchars($this->description, ENT_NOQUOTES));
         return htmlspecialchars($this->description, ENT_NOQUOTES);
     }
 
