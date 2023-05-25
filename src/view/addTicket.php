@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <?php
-    ((isset($_GET['id'])) && (gettype($_GET['id']) === 'integer')) ? $ticket = Ticket::fetchFromId($_GET['id']) : $ticket = null;
+    ((isset($_GET['id'])) && (is_numeric($_GET['id']))) ? $ticket = Ticket::fetchFromId($_GET['id']) : $ticket = null;
     if(!is_null($ticket))
         echo '<title>PortAn / Modifier un ticket</title>';
     else
@@ -18,21 +18,19 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
-<?php
-if(!is_null($ticket))
-    echo '<h1>Modifier un ticket</h1>';
-else
-    echo '<h1>Nouveau ticket</h1>';
-?>
-
-<form action="add" method="POST">
     <?php
-    ((isset($_GET['id'])) && (gettype($_GET['id']) === 'integer')) ? $ticket = Ticket::fetchFromId($_GET['id']) : $ticket = null;
     if(!is_null($ticket))
-        echo "<input type=hidden name=id value={$ticket->getId()}>";
+        echo '<h1>Modifier un ticket</h1>';
+    else
+        echo '<h1>Nouveau ticket</h1>';
     ?>
-
     <form action="add" method="POST">
+        <?php
+        ((isset($_GET['id'])) && (is_numeric($_GET['id']))) ? $ticket = Ticket::fetchFromId($_GET['id']) : $ticket = null;
+        if(!is_null($ticket))
+            echo "<input type=hidden name=id value={$ticket->getId()}>";
+        ?>
+
         <div class="ticket">
             <p class="ticket-title">
                 <?php $nextId = Ticket::getHighestId() + 1; ?>
@@ -75,7 +73,5 @@ else
             </div>
         </div>
     </form>
-
-</form>
 </body>
 </html>
