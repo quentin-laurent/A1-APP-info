@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+body {
+    overflow-x: hidden;
+}
+
+header {
+    z-index: 10;
+    position: fixed;
+    width: 85%;
+}
+
+#page {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#logo {
+    margin-top: 20px;
+    margin-left: -11%;
+    width: 130px;
+    height: 250px;
+    z-index: -1;
+    position: relative;
+}
+
+h1 {
+    font-family: Helvetica, serif;
+    font-size: 30px;
+    color: #1B998B;
+}
+
+#background {
+    margin: -24% 0 0 38%;
+    position: absolute;
+    width: 53%;
+    height: 100%;
+    background: rgb(23,117,106);
+    background: linear-gradient(90deg, rgba(23,117,106,0.8) 43%, rgba(129,218,208,0.8) 95%, rgba(160,248,238,0.8) 100%);
+    color: white;
+    text-align: center;
+    padding-top: 30%;
+    font-size: 80px;
+    font-weight: 900;
+    font-family: "Century Gothic";
+}
+
+#page p {
+    font-size: x-large;
+    font-weight: 1;
+    margin: 0;
+}
+
+#hLogIn {
+    margin-top: 130px;
+}
+
+#hCreateAccount {
+    margin-top: -200px;
+    visibility: hidden;
+}
+
+input {
+    border-color: rgba(0,0,0,0.42);
+    padding-right: 5%;
+    padding-left: 5%;
+    border-radius: 15px;
+    height: 50px;
+    font-size: large;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20%;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(0px, 1fr));
+}
+
+#left {
+    grid-column: 1 / 2;
+}
+
+#right {
+    grid-column: 2 / 3;
+    margin-top: -350px;
+    visibility: hidden;
+}
+
+.submit {
+    border-style: none;
+    border-radius: 20px;
+    height: 40px;
+    justify-self: end;
+    background-color: #1B998B;
+    color:white;
+}
+
+.create {
+    width: 150px;
+    cursor: pointer;
+}
+
+.create:hover {
+    background-color: #17897ecc;
+}
+
+.SignIn {
+    margin-top: -20px;
+    width: 120px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.SignIn:hover {
+    background-color: #17897ecc;
+}
+
+#forgotPassword {
+    font-size: 12px;
+    font-family: monospace;
+    font-weight: lighter;
+    color: black;
+    text-decoration:none;
+    width: 50%;
+}
+
+#error-message {
+    color: red;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: small;
+    text-align: center;
+}
+
+#forgotPassword:hover {
+    text-decoration: underline;
+}
+
+#togglePassword {
+    margin-top: 22px;
+    margin-left: 50.5px;
+}
+
+.signUp {
+    border-style: inset;
+    border-color: white;
+    border-width: 2px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    width: 150px;
+    height: 50px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.signUp:hover {
+    background-color: #17897ecc;
+}

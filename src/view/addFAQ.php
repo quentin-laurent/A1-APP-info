@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <?php
+        (isset($_GET['id'])) ? $faq = FAQ::fetchFromId($_GET['id']) : $faq = null;
+        if(!is_null($faq))
+            echo '<title>PortAn / Modifier une question</title>';
+        else
+            echo '<title>PortAn / Ajouter une question</title>';
+    ?>
+    <link rel="stylesheet" href="../../../static/css/navbar.css">
+    <link rel="icon" type="image/x-icon" href="../../../static/img/infinitemeasures-logo.png">
+    <script src="../../../static/js/navbar.js"></script>
+    <link rel="stylesheet" href="../../../static/css/addFAQ.css">
+</head>
+
+<?php include('src/view/navbar.php'); ?>
+
+<body>
+<?php
+    if(!is_null($faq))
+        echo '<h1>Modifier une question</h1>';
+    else
+        echo '<h1>Ajouter une nouvelle question</h1>';
+?>
+
+<form action="add" method="POST">
+    <?php
+        (isset($_GET['id'])) ? $faq = FAQ::fetchFromId($_GET['id']) : $faq = null;
+        if(!is_null($faq))
+            echo "<input type=hidden name=id value={$faq->getId()}>";
+    ?>
+    <input type="text" name="question" placeholder="Question" <?php if (!is_null($faq)) echo "value={$faq->getQuestion()}"; ?> required>
+    <textarea name="answer" placeholder="Réponse" rows="5" required><?php if (!is_null($faq)) echo "{$faq->getAnswer()}"; ?></textarea>
+    <button type="submit">Valider</button>
+</form>
+</body>
+</html>
