@@ -15,6 +15,11 @@ document.addEventListener("click", event => {
         dropdown.classList.remove("active")
     })
 
+    let userProfile = document.getElementById('submenu-wrap');
+    let userPfp = document.getElementById('user-pfp');
+    if(!(event.target === userProfile) && !(event.target === userPfp))
+        userProfile.classList.remove("open");
+
 });
 
 function openMenu() {
