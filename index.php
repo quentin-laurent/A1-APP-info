@@ -99,6 +99,22 @@ else if($uri === '/'.ROOT_URI.'index.php/tickets/detail' && $method === 'GET') {
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets' && $method === 'GET') {
     TicketManagementController::displayTicketManagementPage();
 }
+// POST endpoint to resolve a Ticket
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/resolve' && $method === 'POST') {
+    TicketManagementController::resolveTicket();
+}
+// POST endpoint to close a Ticket
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/close' && $method === 'POST') {
+    TicketManagementController::closeTicket();
+}
+// POST endpoint to reopen a Ticket
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/reopen' && $method === 'POST') {
+    TicketManagementController::reopenTicket();
+}
+// GET endpoint to display the detail of a Ticket (management only)
+else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/detail' && $method === 'GET') {
+    TicketManagementController::displayTicketDetailPage();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

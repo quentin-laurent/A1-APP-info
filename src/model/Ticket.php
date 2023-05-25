@@ -314,6 +314,62 @@ class Ticket
         return 0;
     }
 
+    /**
+     * Closes this Ticket by setting the {@see $isOpen} attribute to false.
+     * @return bool True if the Ticket has been closed, false otherwise.
+     */
+    public function close(): bool
+    {
+        $this->isOpen = false;
+        return $this->updateStatus();
+    }
+
+    /**
+     * Marks this Ticket as resolved by setting the {@see $isResolved} attribute to true.
+     * <p>This also sets the {@see $isOpen} attribute to false.
+     * @return bool True if the Ticket has been resolved, false otherwise.
+     */
+    public function resolve(): bool
+    {
+        $this->isResolved = true;
+        $this->isOpen = false;
+        return $this->updateStatus();
+    }
+
+    /**
+     * Reopens this Ticket by setting the {@see $isOpen} attribute to true.
+     * <p> This also sets the {@see $isResolved} attribute to false.
+     * @return bool True if the Ticket has been reopened, false otherwise.
+     */
+    public function reopen(): bool
+    {
+        $this->isOpen = true;
+        $this->isResolved = false;
+        return $this->updateStatus();
+    }
+
+    /**
+     * Updates the {@see $isOpen} and {@see $isResolved} attributes of this Ticket in the database.
+     * @return bool: True if the update succeeded, false otherwise.
+     */
+    private function updateStatus(): bool
+    {
+        $query = 'UPDATE TICKET SET isOpen = :isOpen, isResolved = :isResolved WHERE id = :id;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('isOpen', $this->getIsOpen());
+        $preparedStatement->bindParam('isResolved', $this->getIsResolved());
+        $preparedStatement->bindParam('id', $this->getId());
+
+        try {
+            $preparedStatement->execute();
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public function __toString(): string
     {
         return "[TICKET: id={$this->getId()} title={$this->getTitle()} description={$this->getDescription()} "
