@@ -102,7 +102,7 @@ body > hr {
 
 .ticket-footer {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     margin-top: 3%;
 }
