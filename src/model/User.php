@@ -55,6 +55,11 @@ class User
         return htmlspecialchars($this->birthday);
     }
 
+    public function getAge(): int
+    {
+        return (new DateTime($this->getBirthday()))->diff(new DateTime())->y;
+    }
+
     public function getPhoneNumber(): string
     {
         return htmlspecialchars($this->phoneNumber);
@@ -149,6 +154,67 @@ class User
         }
         catch (PDOException $e) {
             echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Updates this {@see User} with the provided fields.
+     * @param string $email The new email.
+     * @param string $firstname The new firstname.
+     * @param string $lastname The new lastname.
+     * @param string $birthday The new birthday.
+     * @param ?string $phoneNumber The new phone number.
+     * @return bool True if this {@see User} has been update, false otherwise.
+     */
+    public function update(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber): bool
+    {
+        $oldEmail = $this->getEmail();
+        $this->email = $email;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->birthday = $birthday;
+        ($phoneNumber === '') ? $this->phoneNumber = null : $this->phoneNumber = $phoneNumber;
+
+        $query = 'UPDATE USERS SET email = :newEmail, firstname = :firstname, lastname = :lastname, birthday = :birthday, phoneNumber = :phoneNumber WHERE email = :oldEmail;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('newEmail', $this->getEmail());
+        $preparedStatement->bindParam('firstname', $this->getFirstname());
+        $preparedStatement->bindParam('lastname', $this->getLastname());
+        $preparedStatement->bindParam('birthday', $this->getBirthday());
+        $preparedStatement->bindParam('phoneNumber', $this->getPhoneNumber());
+        $preparedStatement->bindParam('oldEmail', $oldEmail);
+
+        try {
+            $preparedStatement->execute();
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Updates this {@see User}'s password the provided one.
+     * @param string $newPasswordHash The hash of the new password.
+     * @return bool True if this {@see User}'s password has been update, false otherwise.
+     */
+    public function updatePassword(string $newPasswordHash): bool
+    {
+        $this->passwordHash = $newPasswordHash;
+
+        $query = 'UPDATE USERS SET passwordHash = :passwordHash WHERE email = :email;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('email', $this->getEmail());
+        $preparedStatement->bindParam('passwordHash', $this->getPasswordHash());
+
+        try {
+            $preparedStatement->execute();
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
             return false;
         }
         return true;

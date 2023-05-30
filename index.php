@@ -120,6 +120,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/detail' && $method =
 else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'GET') {
     UserProfileController::displayUserProfilePage();
 }
+// POST endpoint used to update a User
+else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'POST') {
+    UserProfileController::updateUser();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');
