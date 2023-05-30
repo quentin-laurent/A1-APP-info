@@ -10,6 +10,7 @@ require_once('src/model/Ticket.php');
 require_once('src/model/Tag.php');
 require_once('src/controller/TicketController.php');
 require_once('src/controller/TicketManagementController.php');
+require_once('src/controller/UserProfileController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -114,6 +115,10 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/reopen' && $method =
 // GET endpoint to display the detail of a Ticket (management only)
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/detail' && $method === 'GET') {
     TicketManagementController::displayTicketDetailPage();
+}
+// GET endpoint to display the user profile page
+else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'GET') {
+    UserProfileController::displayUserProfilePage();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

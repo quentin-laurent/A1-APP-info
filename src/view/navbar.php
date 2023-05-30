@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <hr>
-                    <a class=submenu-link href=#>
+                    <a class=submenu-link href='$rootURL/profile'>
                         <img src=$imgDirectory/profile-icon.svg alt=profile-icon>
                         <p>Mon profil</p>
                         <span>></span>
