@@ -158,7 +158,7 @@ class Ticket
             $preparedStatement->execute();
         }
         catch (PDOException $e) {
-            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            error_log($e->getMessage());
             return false;
         }
 
@@ -176,7 +176,7 @@ class Ticket
                 $preparedStatement->execute();
             }
             catch (PDOException $e) {
-                echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+                error_log($e->getMessage());
                 return false;
             }
         }
@@ -191,7 +191,7 @@ class Ticket
                 $preparedStatement->execute();
             }
             catch (PDOException $e) {
-                echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+                error_log($e->getMessage());
                 return false;
             }
         }
