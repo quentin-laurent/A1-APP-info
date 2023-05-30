@@ -33,14 +33,25 @@ body > hr {
 }
 
 #success-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: green;
+    color: #155724;
+    background-color: #d4edda;
+    border: solid 1px #c3e6cb;
+    border-radius: .25rem;
 }
 
 #error-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: red;
-    font-weight: bold;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: solid 1px #f5c6cb;;
+    border-radius: .25rem;
 }
 
 #tickets {
