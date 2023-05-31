@@ -14,7 +14,7 @@ const confirmPassword = function() {
             submitButton.removeAttribute('disabled');
             submitButton.style.cursor = 'pointer';
             currentPasswordMandatory.style.display = 'none';
-            currentPasswordMandatory.removeAttribute('required');
+            currentPassword.removeAttribute('required');
         }
         else {
             newPassword.style.borderColor = 'green';
