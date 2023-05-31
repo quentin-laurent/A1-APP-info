@@ -69,8 +69,16 @@ class UserProfileController
         }
         else
         {
-            $_SESSION['errorMessage'] = "Erreur lors de la mise à jour des informations.";
-            header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
+            if(!is_null(User::fetchFromEmail($_POST['email'])))
+            {
+                $_SESSION['errorMessage'] = "Cette adresse email n'est pas disponible.";
+                header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "Erreur lors de la mise à jour des informations.";
+                header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
+            }
         }
     }
 }
