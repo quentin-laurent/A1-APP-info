@@ -11,6 +11,10 @@ require_once('src/model/Tag.php');
 require_once('src/controller/TicketController.php');
 require_once('src/controller/TicketManagementController.php');
 require_once('src/controller/UserProfileController.php');
+require_once('src/model/Product.php');
+require_once('src/controller/DataController.php');
+require_once('src/model/Metric.php');
+require_once('src/controller/MetricController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -123,6 +127,14 @@ else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'GET') {
 // POST endpoint used to update a User
 else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'POST') {
     UserProfileController::updateUser();
+}
+// GET endpoint used to display the data page
+else if($uri === '/'.ROOT_URI.'index.php/data' && $method === 'GET') {
+    DataController::displayDataPage();
+}
+// POST endpoint used to fetch metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/fetchMetrics' && $method === 'POST') {
+    MetricController::fetchMetrics();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

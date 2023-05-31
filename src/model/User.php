@@ -16,9 +16,10 @@ class User
     private ?string $lastVisit;
     private int $nbConnections;
     private bool $banned;
+    private ?int $productId;
 
     // Constructor
-    public function __construct(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, string $passwordHash, ?string $profilePicturePath=null, int $permissionLevel=USER, ?string $lastVisit=null, int $nbConnections=0, bool $banned=false)
+    public function __construct(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, string $passwordHash, ?string $profilePicturePath=null, int $permissionLevel=USER, ?string $lastVisit=null, int $nbConnections=0, bool $banned=false, ?int $productId=null)
     {
         $this->email = $email;
         $this->firstname = $firstname;
@@ -31,6 +32,7 @@ class User
         $this->lastVisit = $lastVisit;
         $this->nbConnections = $nbConnections;
         $this->banned = $banned;
+        $this->productId = $productId;
     }
 
     // Getters & Setters
@@ -94,6 +96,11 @@ class User
     {
         return htmlspecialchars($this->banned);
     }
+    
+    public function getProductId(): ?int
+    {
+        return $this->productId;
+    }
     #endregion Getters & Setters
 
     // Methods
@@ -105,7 +112,7 @@ class User
     {
         $query = 'SELECT * FROM USERS;';
         $result = Connection::getPDO()->query($query);
-        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+        $usersArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
         return $usersArray;
     }
@@ -123,7 +130,7 @@ class User
 
         try {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
             if (!empty($usersArray))
                 return $usersArray[0];
@@ -168,7 +175,7 @@ class User
      * @param ?string $phoneNumber The new phone number.
      * @return bool True if this {@see User} has been update, false otherwise.
      */
-    public function update(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber): bool
+    public function update(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, ?int $productId): bool
     {
         $oldEmail = $this->getEmail();
         $this->email = $email;
@@ -176,14 +183,16 @@ class User
         $this->lastname = $lastname;
         $this->birthday = $birthday;
         ($phoneNumber === '') ? $this->phoneNumber = null : $this->phoneNumber = $phoneNumber;
+        (empty($productId)) ? $this->productId = null : $this->productId = $productId;
 
-        $query = 'UPDATE USERS SET email = :newEmail, firstname = :firstname, lastname = :lastname, birthday = :birthday, phoneNumber = :phoneNumber WHERE email = :oldEmail;';
+        $query = 'UPDATE USERS SET email = :newEmail, firstname = :firstname, lastname = :lastname, birthday = :birthday, phoneNumber = :phoneNumber, productId = :productId WHERE email = :oldEmail;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('newEmail', $this->getEmail());
         $preparedStatement->bindParam('firstname', $this->getFirstname());
         $preparedStatement->bindParam('lastname', $this->getLastname());
         $preparedStatement->bindParam('birthday', $this->getBirthday());
         $preparedStatement->bindParam('phoneNumber', $this->getPhoneNumber());
+        $preparedStatement->bindParam('productId', $this->getProductId());
         $preparedStatement->bindParam('oldEmail', $oldEmail);
 
         try {
@@ -301,7 +310,7 @@ class User
 
         try {
             $preparedStatement->execute();
-            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
         }
         catch (PDOException $e) {
             echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";

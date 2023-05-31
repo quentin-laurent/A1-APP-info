@@ -65,7 +65,7 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
         </div>
         <div class="input-group">
             <label for="portanId">Identifiant PortAn</label>
-            <input id="portanId" type="text" name="portanId" placeholder="Entrez l'identifiant de votre appareil PortAn">
+            <input id="portanId" type="number" name="portanId" placeholder="Entrez l'identifiant de votre appareil PortAn" <?php if(!is_null($user->getProductId())) echo "value='{$user->getProductId()}'"; ?>>
         </div>
     </div>
     <h2>Mot de passe</h2>

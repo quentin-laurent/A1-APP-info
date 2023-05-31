@@ -8,7 +8,7 @@
     <nav>
         <ul class="navbar-links">
             <li><a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/home' ?>>Accueil</a></li>
-            <li><a href="#">Mes données</a></li>
+            <li><a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/data' ?>>Mes données</a></li>
             <li><a href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/tickets' ?>>Tickets</a></li>
             <?php
             if(isset($_SESSION['email']))

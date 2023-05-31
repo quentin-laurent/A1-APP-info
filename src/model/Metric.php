@@ -2,6 +2,14 @@
 
 class Metric
 {
+    const TEMPERATURE = 'temperature';
+    const HUMIDITY = 'humidity';
+    const CO2 = 'co2';
+    const MICROPARTICLES = 'microparticles';
+    const BPM = 'bpm';
+    const SOUND = 'sound';
+    const TYPES = [self::TEMPERATURE, self::HUMIDITY, self::CO2, self::MICROPARTICLES, self::BPM, self::SOUND];
+
     // Attributes
     private int $id;
     private string $metricType;
@@ -59,6 +67,28 @@ class Metric
         $metricsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Metric', [1, 2, 3, 4, 5]);
 
         return $metricsArray;
+    }
+
+    /**
+     * Fetches {@see Metric}s with the specified type.
+     * @param string $metricType The type of {@see Metric} to fetch.
+     * @return array An array containing the fetched {@see Metric}s.
+     */
+    public static function fetchFromType(string $metricType): array
+    {
+        $query = 'SELECT * FROM METRIC WHERE metricType = :metricType;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('metricType', $metricType);
+
+        try {
+            $preparedStatement->execute();
+            $metricArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Metric', [1, 2, 3, 4, 5]);
+            return $metricArray;
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+        return array();
     }
 
     public function __toString(): string

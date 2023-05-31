@@ -5,14 +5,12 @@ class Product
     // Attributes
     private int $id;
     private string $name;
-    private int $userEmail;
 
     // Constructor
-    public function __construct(int $id, string $name, string $userEmail)
+    public function __construct(int $id, string $name)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->userEmail = $userEmail;
     }
 
     // Getters & Setters
@@ -26,11 +24,6 @@ class Product
     {
         return htmlspecialchars($this->name);
     }
-
-    public function getUserEmail()
-    {
-        return htmlspecialchars($this->userEmail);
-    }
     #endregion Getters & Setters
 
     // Methods
@@ -42,9 +35,34 @@ class Product
     {
         $query = 'SELECT * FROM PRODUCT;';
         $result = Connection::getPDO()->query($query);
-        $productsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Product', [1, 2, 3]);
+        $productsArray = $result->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Product', [1, 2]);
 
         return $productsArray;
+    }
+
+    /**
+     * Fetches a {@see Product} using its id.
+     * @param ?int $id The id of the {@see Product}.
+     * @return ?Product The corresponding {@see Product} if it exists, null otherwise.
+     */
+    public static function fetchFromId(?int $id): ?Product
+    {
+        error_log("Trying to fetch product with ID $id");
+        $query = 'SELECT * FROM PRODUCT WHERE id = :id;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('id', $id);
+
+        try {
+            $preparedStatement->execute();
+            $productsArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Product', [1, 2]);
+            if(!empty($productsArray))
+                return $productsArray[0];
+            return null;
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+        return null;
     }
 
     public function __toString(): string

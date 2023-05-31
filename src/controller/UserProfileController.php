@@ -35,7 +35,8 @@ class UserProfileController
         }
         $hostname = $_SERVER['HTTP_HOST'];
         $user = User::fetchFromEmail($_SESSION['email']);
-        $success = $user->update($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['birthday'], $_POST['phoneNumber']);
+        ($_POST['portanId'] === '') ? $portanId = null : $portanId = (int) $_POST['portanId'];
+        $success = $user->update($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['birthday'], $_POST['phoneNumber'], $portanId);
 
         $currentPassword = $_POST['currentPassword'];
         $newPassword = $_POST['newPassword'];
@@ -66,19 +67,19 @@ class UserProfileController
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['successMessage'] = "Modifications enregistrées.";
             header("Location: http://$hostname/".ROOT_URI.'index.php/profile?success');
+            exit;
         }
         else
         {
-            if(!is_null(User::fetchFromEmail($_POST['email'])))
-            {
+            $user = User::fetchFromEmail($_POST['email']);
+            if(!is_null($user) && $user->getEmail() != $_SESSION['email'])
                 $_SESSION['errorMessage'] = "Cette adresse email n'est pas disponible.";
-                header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
-            }
+            else if(is_null(Product::fetchFromId($portanId)))
+                $_SESSION['errorMessage'] = "Aucun appareil trouvé avec l'identifiant $portanId.";
             else
-            {
                 $_SESSION['errorMessage'] = "Erreur lors de la mise à jour des informations.";
-                header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
-            }
+            header("Location: http://$hostname/".ROOT_URI.'index.php/profile?error');
+            exit;
         }
     }
 }
