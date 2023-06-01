@@ -32,6 +32,27 @@ if(is_null($user) || is_null($product))
     exit;
 ?>
 <h2>Appareil P<span class="green">o</span>rtAn #<?php echo "{$product->getId()}" ?></h2>
+<div id="options">
+    <div class="checkbox-input-group">
+        <label for="update">Rafraîchissement automatique</label>
+        <input id="update" type="checkbox" name="update">
+    </div>
+</div>
+<div id="radio-buttons">
+    <div class="radio-input-group">
+        <label for="seconds">Secondes</label>
+        <input id="seconds" type="radio" name="scale" value="seconds" checked>
+    </div>
+    <div class="radio-input-group">
+        <label for="minutes">Minutes</label>
+        <input id="minutes" type="radio" name="scale" value="minutes">
+    </div>
+    <div class="radio-input-group">
+        <label for="hours">Heures</label>
+        <input id="hours" type="radio" name="scale" value="hours">
+    </div>
+</div>
+
 <div id="grid">
     <div class="sensor">
         <div class="sensor-header">
@@ -39,8 +60,6 @@ if(is_null($user) || is_null($product))
             <h3 class="sensor-title">Température</h3>
         </div>
         <canvas id="temperature-chart"></canvas>
-        <button id="addButton" type="button">Add random data</button>
-        <button id="ajaxButton" type="button">AJAX</button>
     </div>
     <div class="sensor">
         <div class="sensor-header">

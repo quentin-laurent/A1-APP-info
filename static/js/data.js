@@ -52,7 +52,9 @@ co2Chart = new Chart(co2ChartCanvas, {
         datasets: [{
             label: 'Taux de CO2 (ppm)',
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: 'rgb(179, 179, 179)',
+            backgroundColor: 'rgb(115, 115, 115)'
         }]
     },
     options: {
@@ -71,7 +73,9 @@ microparticlesChart = new Chart(microparticlesChartCanvas, {
         datasets: [{
             label: 'Taux de microparticules (ppm)',
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: 'rgb(15, 15, 87)',
+            backgroundColor: 'rgb(28, 28, 74)'
         }]
     },
     options: {
@@ -90,7 +94,9 @@ bpmChart = new Chart(bpmChartCanvas, {
         datasets: [{
             label: 'Battements par minute (BPM)',
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: 'rgb(217, 110, 38)',
+            backgroundColor: 'rgb(185, 116, 70)'
         }]
     },
     options: {
@@ -109,7 +115,9 @@ soundChart = new Chart(soundChartCanvas, {
         datasets: [{
             label: 'Niveau sonore (dB)',
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: 'rgb(173, 31, 173)',
+            backgroundColor: 'rgb(148, 56, 148)'
         }]
     },
     options: {
@@ -122,6 +130,7 @@ soundChart = new Chart(soundChartCanvas, {
 });
 
 charts = {temperatureChart: temperatureChart, humidityChart: humidityChart, co2Chart: co2Chart, microparticlesChart: microparticlesChart, bpmChart: bpmChart, soundChart: soundChart};
+chartsArray = [temperatureChart, humidityChart, co2Chart, microparticlesChart, bpmChart, soundChart];
 
 function addData(chart, label, data) {
     chart.data.labels.push(label);
@@ -139,54 +148,118 @@ function removeData(chart) {
     chart.update();
 }
 
-$(document).ready(function() {
+function replaceData(chart, labels, data) {
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = data;
+    chart.update();
+}
+
+function clearData(chart) {
+    chart.data.labels = [];
+    chart.data.datasets[0].data = [];
+    chart.update();
+}
+
+const radioInputs = document.getElementsByName('scale');
+
+/**
+ * Returns the chart scale selected by the user (e.g. seconds, minutes, hours etc.)
+ * @returns {String} The string representation of the selected scale.
+ */
+function getScale() {
+    for(let i = 0; i < radioInputs.length; i++) {
+        if(radioInputs[i].checked)
+            return radioInputs[i].value;
+    }
+    return '';
+}
+
+function loadCharts() {
     let metricTypes = ['temperature', 'humidity', 'co2', 'microparticles', 'bpm', 'sound'];
     metricTypes.forEach(metricType => {
-        console.log('Fetching ' + metricType + ' data...');
+        //console.log('Fetching ' + metricType + ' data...');
         $.ajax({
             url:"data/fetchMetrics",
             type: "post",
             dataType: 'json',
-            data: {metricType: metricType},
+            data: {metricType: metricType, scale: getScale()},
             success:function(result){
                 let data = result['data'];
                 let labels = result['labels'];
                 let chartName = metricType + 'Chart';
-                console.log('Current chart is: ' +chartName);
+                //console.log('Current chart is: ' +chartName);
                 for(let i = 0; i < data.length; i++) {
-                    console.log('Pushing label:' + labels[i] + ' data: ' + data[i]);
+                    //console.log('Pushing label:' + labels[i] + ' data: ' + data[i]);
                     addData(charts[chartName], labels[i], data[i]);
                 }
             },
             error:function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR + ' ' + textStatus + ' ' + errorThrown);
+                console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
             }
         });
     })
+}
+
+$(document).ready(() => {
+    loadCharts();
 });
 
-const addButton = document.getElementById('addButton');
-addButton.addEventListener('click', event => {
-    addData(temperatureChart, '16:06', Math.round(Math.random()*100));
-})
+for(let i = 0; i < radioInputs.length; i++) {
+    radioInputs[i].addEventListener('click', event => {
+        for(let i = 0; i < chartsArray.length; i++) {
+            clearData(chartsArray[i]);
+        }
+        loadCharts();
+    });
+}
 
-const ajaxButton = document.getElementById('ajaxButton');
-ajaxButton.addEventListener('click', event => {
+function fetchLatestMetrics() {
+    let metricTypes = ['temperature', 'humidity', 'co2', 'microparticles', 'bpm', 'sound'];
+    let date = new Date();
+    let startDate = `${date.getFullYear()}-${('0' + (date.getMonth()+1)).slice(-2)}-${('0' + date.getDate()).slice(-2)} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    metricTypes.forEach(metricType => {
+        //console.log('Fetching latest ' + metricType + ' data...');
+        $.ajax({
+            url:"data/fetchMetrics",
+            type: "post",
+            dataType: 'json',
+            data: {metricType: metricType, scale: getScale(), startDate: startDate},
+            success:function(result){
+                let data = result['data'];
+                let labels = result['labels'];
+                let chartName = metricType + 'Chart';
+                replaceData(charts[chartName], labels, data);
+            },
+            error:function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+    })
+}
+
+const checkboxUpdate = document.getElementById('update');
+
+function injectRandomData() {
+    let date = new Date();
+    let currentDate = `${date.getFullYear()}-${('0' + (date.getMonth()+1)).slice(-2)}-${('0' + date.getDate()).slice(-2)} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let randomMetricValue = (Math.random() * (70 - 30 + 1) + 30).toFixed(2);
     $.ajax({
-        url:"data/fetchMetrics",
+        url:"data/inject",
         type: "post",
         dataType: 'json',
-        data: {metricType: "humidity"},
-        success:function(result){
-            //console.log(result);
-            let data = result['data'];
-            let labels = result['labels'];
-            console.log(data);
-            console.log(labels);
-            for(let i = 0; i < data.length; i++) {
-                console.log('label:' + labels[i] + ' data: ' + data[i]);
-                addData(humidityChart, labels[i], data[i]);
-            }
+        data: {metricType: 'humidity', metricValue: randomMetricValue, metricDate: currentDate},
+        error:function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
         }
     });
-});
+}
+
+$(document).ready(function () {
+    var intervalId = window.setInterval(function(){
+
+        if(checkboxUpdate.checked) {
+            injectRandomData();
+            fetchLatestMetrics()
+        }
+    }, 1000);
+})

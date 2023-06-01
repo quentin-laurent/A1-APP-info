@@ -136,6 +136,14 @@ else if($uri === '/'.ROOT_URI.'index.php/data' && $method === 'GET') {
 else if($uri === '/'.ROOT_URI.'index.php/data/fetchMetrics' && $method === 'POST') {
     MetricController::fetchMetrics();
 }
+// POST endpoint used to fetch the latest metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/fetchLatestMetrics' && $method === 'POST') {
+    MetricController::fetchLatestMetrics();
+}
+// TEMPORARY POST endpoint used to inject metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/inject' && $method === 'POST') {
+    MetricController::injectMetric();
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

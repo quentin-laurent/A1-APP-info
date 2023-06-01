@@ -47,7 +47,6 @@ class Product
      */
     public static function fetchFromId(?int $id): ?Product
     {
-        error_log("Trying to fetch product with ID $id");
         $query = 'SELECT * FROM PRODUCT WHERE id = :id;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('id', $id);

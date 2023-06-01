@@ -40,6 +40,21 @@ h2 {
     margin-bottom: 2%;
 }
 
+#radio-buttons, #options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-input-group {
+    margin-bottom: 1%;
+}
+
+.radio-input-group {
+    margin-right: 2%;
+}
+
 .green {
     color: #1B998B;
 }
@@ -55,6 +70,7 @@ h2 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
 }
 
 .sensor-image {
