@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>PortAn / User management</title>
     <link rel="stylesheet" href="../../static/css/navbar.css">
+    <link rel="stylesheet" href="../../static/css/footer.css">
     <link rel="icon" type="image/x-icon" href="../../static/img/infinitemeasures-logo.png">
     <script src="../../static/js/navbar.js"></script>
     <link rel="stylesheet" href="../../static/css/userManagement.css">
@@ -106,5 +107,6 @@
         }
         ?>
     </table>
+    <?php include('src/view/footer.php'); ?>
 </body>
 </html>

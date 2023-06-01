@@ -1,5 +1,12 @@
 body {
     font-family: Poppins, 'sans-serif';
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#page-wrapper {
+    flex-grow: 1;
 }
 
 h1 {
@@ -8,7 +15,7 @@ h1 {
     color: #1B998B;
 }
 
-body > hr {
+#page-wrapper > hr {
     margin: 0 2% 2% 2%;
 }
 

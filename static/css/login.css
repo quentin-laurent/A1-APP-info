@@ -2,6 +2,13 @@
 
 body {
     overflow-x: hidden;
+    min-height: 140vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#page {
+    flex-grow: 1;
 }
 
 header {
@@ -160,3 +167,8 @@ input {
 .signUp:hover {
     background-color: #17897ecc;
 }
+
+footer {
+    z-index: 10;
+}
+

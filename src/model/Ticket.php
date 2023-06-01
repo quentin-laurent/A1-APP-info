@@ -147,7 +147,6 @@ class Ticket
      */
     public static function add(Ticket $ticket, $tagType, $tagPriority): bool
     {
-        $ticketId = Ticket::getHighestId() + 1;
         $query = 'INSERT INTO TICKET(title, description, authorEmail) VALUES(:title, :description, :authorEmail);';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('title', $ticket->getTitle());
@@ -162,6 +161,7 @@ class Ticket
             return false;
         }
 
+        $ticketId = Ticket::getHighestId();
 
         $tag1 = Tag::fetchFromName($tagType);
         $tag2 = Tag::fetchFromName($tagPriority);
@@ -309,7 +309,7 @@ class Ticket
         $result = Connection::getPDO()->query($query);
         $res = $result->fetch();
 
-        if(!is_null($res))
+        if(!empty($res) && !is_null($res[0]))
             return $res[0];
         return 0;
     }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>PortAn / Mon profil</title>
     <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
     <script src="../static/js/navbar.js"></script>
     <link rel="stylesheet" href="../static/css/userProfile.css">
@@ -13,6 +14,7 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
+<div id="page-wrapper">
 <h1>Mon profil</h1>
 <hr>
 
@@ -89,5 +91,7 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
         <button id="submitButton" type="submit">Enregistrer</button>
     </div>
 </form>
+</div>
+<?php include('src/view/footer.php'); ?>
 </body>
 </html>
