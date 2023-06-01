@@ -14,31 +14,52 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
+<div id="page-wrapper">
     <h1>Gestion des utilisateurs</h1>
+    <hr>
+
     <?php
-        if(isset($_GET['success']) && isset($_SESSION['successMessage']))
-        {
-            echo "<p id=success-message>{$_SESSION['successMessage']}</p>";
-            unset($_SESSION['successMessage']);
-        }
-        if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
-            echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
-            unset($_SESSION['successMessage']);
-        }
+    if(isset($_GET['success']) && isset($_SESSION['successMessage']))
+    {
+        echo "<p id=success-message>{$_SESSION['successMessage']}</p>";
+        unset($_SESSION['successMessage']);
+    }
+    if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
+        echo "<p id=error-message>{$_SESSION['errorMessage']}</p>";
+        unset($_SESSION['errorMessage']);
+    }
     ?>
 
     <form id="search" action="users/search" method="POST">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="firstname" placeholder="Prenom">
-        <input type="text" name="lastname" placeholder="Nom">
-        <label for="role">Rôle:</label>
-        <select id="role" name="permissionLevel">
-            <option value=0 selected>Tous</option>
-            <option value=1>Utilisateur</option>
-            <option value=2>Gestionnaire</option>
-            <option value=3>Administrateur</option>
-        </select>
-        <button type="submit">Rechercher</button>
+        <h2>Recherche</h2>
+        <div id="search-box">
+            <div id="row1">
+                <div class="input-group">
+                    <label for="search-firstname">Prénom:</label>
+                    <input id="search-firstname" type="text" name="firstname" placeholder="Prenom">
+                </div>
+                <div class="input-group">
+                    <label for="search-lastname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nom:</label>
+                    <input id="search-lastname" type="text" name="lastname" placeholder="Nom">
+                </div>
+            </div>
+            <div id="row2">
+                <div class="input-group">
+                    <label for="search-email">Email:</label>
+                    <input id="search-email" type="text" name="email" placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <label for="search-role">Rôle:</label>
+                    <select id="search-role" name="permissionLevel">
+                        <option value=0 selected>Tous</option>
+                        <option value=1>Utilisateur</option>
+                        <option value=2>Gestionnaire</option>
+                        <option value=3>Administrateur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button id="search-button" type="submit">Rechercher</button>
     </form>
 
     <table>
@@ -97,9 +118,9 @@
                 <td>$lastVisit</td>
                 <td>{$user->getNbConnections()}</td>
                 <td>
-                    <button type=submit form=form$i>Valider</button>
-                    <form action=users/ban method=POST><input type=hidden name=email value={$user->getEmail()}><button type=submit name=ban value=$bannedValue>$bannedText</button></form>
-                    <form action=users/delete method=POST><button class=delete-button type=submit name=email value={$user->getEmail()}>Supprimer</button></form>
+                    <button class='action-button submit' type=submit form=form$i>Valider</button>
+                    <form action=users/ban method=POST><input type=hidden name=email value={$user->getEmail()}><button class='action-button ban' type=submit name=ban value=$bannedValue>$bannedText</button></form>
+                    <form action=users/delete method=POST><button class='action-button delete' type=submit name=email value={$user->getEmail()}>Supprimer</button></form>
                 </td>
             </tr>
             ";
@@ -107,6 +128,7 @@
         }
         ?>
     </table>
-    <?php include('src/view/footer.php'); ?>
+</div>
+<?php include('src/view/footer.php'); ?>
 </body>
 </html>

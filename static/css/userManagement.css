@@ -10,36 +10,85 @@ body {
 }
 
 h1 {
-    text-align: center;
-    font-family: Poppins, 'sans-serif';
-    margin-top: 2%;
+    text-align: left;
+    margin: 2% auto 1% 2%;
+    color: #1B998B;
+}
+
+#page-wrapper > hr {
+    margin: 0 2% 2% 2%;
 }
 
 #success-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: green;
+    color: #155724;
+    background-color: #d4edda;
+    border: solid 1px #c3e6cb;
+    border-radius: .25rem;
 }
 
 #error-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: red;
-    font-weight: bold;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: solid 1px #f5c6cb;;
+    border-radius: .25rem;
 }
 
 #search {
     text-align: center;
-    margin-top: 2%;
 }
 
-#search input {
-    width: 25%;
+#search h2 {
+    font-size: xx-large;
+    margin-bottom: 1%;
+}
+
+#search-box {
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.input-group {
+    margin-bottom: 5%;
+}
+
+.input-group input, .input-group select {
+    font-family: Poppins, 'sans-serif';
+    width: 50%;
+    padding: 1%;
+}
+
+#search-button {
+    font-weight: bold;
+    padding: 1% 2% 1% 2%;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+    color: white;
+    background-color: #1B998B;
+}
+
+#search-button:hover {
+    filter: brightness(110%);
 }
 
 table {
     border: solid 1px black;
     border-collapse: collapse;
-    width: 75%;
-    margin: 5% auto auto;
+    margin: 2% auto auto auto;
+    width: 95%;
 }
 
 th, td {
@@ -62,4 +111,40 @@ td img {
 
 .email p {
     margin-left: 5%;
+}
+
+td select {
+    font-family: Poppins, 'sans-serif';
+    padding: 2%;
+}
+
+.action-button {
+    font-family: Poppins, 'sans-serif';
+    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+    margin: 2% auto 2% auto;
+}
+
+.action-button:hover {
+    filter: brightness(110%);
+}
+
+.action-button.submit {
+    color: white;
+    background-color: #1B998B;
+}
+
+.action-button.ban {
+    color: white;
+    background-color: #333333;
+}
+
+.action-button.delete {
+    color: white;
+    background-color: #D22B2B;
 }
