@@ -100,6 +100,15 @@ th, td {
     white-space: nowrap;
 }
 
+#table-header {
+    background-color: #534D56;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #F8F1FF;
+}
+
 td img {
     width: 30px;
 }
@@ -118,6 +127,11 @@ td select {
     padding: 2%;
 }
 
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .action-button {
     font-family: Poppins, 'sans-serif';
     padding: 5%;
@@ -127,7 +141,6 @@ td select {
     cursor: pointer;
     text-decoration: none;
     font-size: small;
-    margin: 2% auto 2% auto;
 }
 
 .action-button:hover {

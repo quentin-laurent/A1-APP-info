@@ -63,7 +63,7 @@
     </form>
 
     <table>
-        <tr>
+        <tr id="table-header">
             <th>Email</th>
             <th>Prénom</th>
             <th>Nom</th>
@@ -118,9 +118,11 @@
                 <td>$lastVisit</td>
                 <td>{$user->getNbConnections()}</td>
                 <td>
-                    <button class='action-button submit' type=submit form=form$i>Valider</button>
-                    <form action=users/ban method=POST><input type=hidden name=email value={$user->getEmail()}><button class='action-button ban' type=submit name=ban value=$bannedValue>$bannedText</button></form>
-                    <form action=users/delete method=POST><button class='action-button delete' type=submit name=email value={$user->getEmail()}>Supprimer</button></form>
+                    <div class='actions'>
+                        <button class='action-button submit' type=submit form=form$i>Valider</button>
+                        <form action=users/ban method=POST><input type=hidden name=email value={$user->getEmail()}><button class='action-button ban' type=submit name=ban value=$bannedValue>$bannedText</button></form>
+                        <form action=users/delete method=POST><button class='action-button delete' type=submit name=email value={$user->getEmail()}>Supprimer</button></form>
+                    </div>
                 </td>
             </tr>
             ";
