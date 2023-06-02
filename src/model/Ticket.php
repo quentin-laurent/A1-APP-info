@@ -356,8 +356,10 @@ class Ticket
     {
         $query = 'UPDATE TICKET SET isOpen = :isOpen, isResolved = :isResolved WHERE id = :id;';
         $preparedStatement = Connection::getPDO()->prepare($query);
-        $preparedStatement->bindParam('isOpen', $this->getIsOpen());
-        $preparedStatement->bindParam('isResolved', $this->getIsResolved());
+        $isOpen = $this->getIsOpen() ? 1 : 0;
+        $preparedStatement->bindParam('isOpen', $isOpen);
+        $isResolved = $this->getIsResolved() ? 1 : 0;
+        $preparedStatement->bindParam('isResolved', $isResolved);
         $preparedStatement->bindParam('id', $this->getId());
 
         try {
