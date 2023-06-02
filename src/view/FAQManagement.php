@@ -13,8 +13,11 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
+<div id="page-wrapper">
 <h1>Gestion de la FAQ</h1>
-<div><a href="faq/add"><button type="button">Ajouter une question</button></a></div>
+<hr>
+
+<div id="add-button-wrapper"><a href="faq/add"><button id="add-button" type="button">Ajouter une question</button></a></div>
 
 <?php
     if(isset($_GET['success']) && isset($_SESSION['successMessage']))
@@ -29,7 +32,7 @@
 ?>
 
 <table>
-    <tr>
+    <tr id="table-header">
         <th>Question</th>
         <th>Réponse</th>
         <th>Auteur</th>
@@ -46,8 +49,10 @@
                 <td>{$faq->getAnswer()}</td>
                 <td>{$author->getFirstname()} {$author->getLastname()}</td>
                 <td>
-                    <a href='faq/add?id={$faq->getId()}'><button type=button>Modifier</button></a>
-                    <form action=faq/delete method=POST><button class=delete-button type=submit name=id value={$faq->getId()}>Supprimer</button></form>
+                    <div class='actions'>
+                        <a href='faq/add?id={$faq->getId()}'><button class='action-button modify' type=button>Modifier</button></a>
+                        <form action=faq/delete method=POST><button class='action-button delete' type=submit name=id value={$faq->getId()}>Supprimer</button></form>
+                    </div>
                 </td>
             </tr>
             ";
@@ -55,6 +60,7 @@
     }
     ?>
 </table>
+</div>
 <?php include('src/view/footer.php'); ?>
 </body>
 </html>

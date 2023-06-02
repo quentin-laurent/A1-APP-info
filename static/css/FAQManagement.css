@@ -10,32 +10,74 @@ body {
 }
 
 h1 {
-    text-align: center;
-    font-family: Poppins, 'sans-serif';
-    margin-top: 2%;
+    text-align: left;
+    margin: 2% auto 1% 2%;
+    color: #1B998B;
+}
+
+#page-wrapper > hr {
+    margin: 0 2% 2% 2%;
 }
 
 #success-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: green;
+    color: #155724;
+    background-color: #d4edda;
+    border: solid 1px #c3e6cb;
+    border-radius: .25rem;
 }
 
 #error-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
     text-align: center;
-    color: red;
-    font-weight: bold;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: solid 1px #f5c6cb;;
+    border-radius: .25rem;
 }
 
-body > div {
+#add-button-wrapper {
     margin: 2% auto 2% auto;
     text-align: center;
+}
+
+#add-button {
+    font-weight: bold;
+    padding: 1%;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+    color: white;
+    background-color: #1B998B;
+    width: 200px;
+}
+
+#add-button:hover {
+    filter: brightness(110%);
 }
 
 table {
     border: solid 1px black;
     border-collapse: collapse;
     width: 75%;
-    margin: 2% auto auto;
+    margin: 0 auto 0 auto;
+}
+
+#table-header {
+    background-color: #534D56;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #F8F1FF;
 }
 
 th, td {
@@ -45,4 +87,34 @@ th, td {
     text-align: center;
     max-width: 100%;
     white-space: nowrap;
+}
+
+.actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+}
+
+.action-button {
+    font-family: Poppins, 'sans-serif';
+    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+}
+
+.action-button:hover {
+    filter: brightness(110%);
+}
+
+.action-button.modify {
+    color: white;
+    background-color: #1B998B;
+}
+
+.action-button.delete {
+    color: white;
+    background-color: #D22B2B;
 }
