@@ -37,7 +37,6 @@
                 foreach($admins as $admin)
                     echo "<option value='{$admin->getEmail()}'>{$admin->getFirstname()} {$admin->getLastname()} ({$admin->getEmail()})</option>";
                 ?>
-                <option value="pawaso2070@ratedane.com">pawaso2070@ratedane.com</option>
             </select>
         </div>
         <div class="input-group">
