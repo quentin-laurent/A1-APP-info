@@ -148,6 +148,10 @@ else if($uri === '/'.ROOT_URI.'index.php/data/inject' && $method === 'POST') {
 else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {
     require('src/view/cgu.php');
 }
+// GET endpoint used to display the TOS page
+else if($uri === '/'.ROOT_URI.'index.php/mentionsLegales' && $method === 'GET') {
+    require('src/view/mentionsLegales.php');
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');
