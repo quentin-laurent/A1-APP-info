@@ -69,6 +69,7 @@ table {
     border-collapse: collapse;
     width: 75%;
     margin: 0 auto 0 auto;
+    table-layout: fixed;
 }
 
 #table-header {
@@ -86,7 +87,7 @@ th, td {
     padding: 1%;
     text-align: center;
     max-width: 100%;
-    white-space: nowrap;
+    word-wrap: break-word;
 }
 
 .actions {

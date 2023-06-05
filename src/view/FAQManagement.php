@@ -45,8 +45,8 @@
         $author = User::fetchFromEmail($faq->getAuthorEmail());
         echo"
             <tr>
-                <td>{$faq->getQuestion()}</td>
-                <td>{$faq->getAnswer()}</td>
+                <td>{$faq->getQuestion(ENT_QUOTES)}</td>
+                <td>{$faq->getAnswer(ENT_QUOTES)}</td>
                 <td>{$author->getFirstname()} {$author->getLastname()}</td>
                 <td>
                     <div class='actions'>

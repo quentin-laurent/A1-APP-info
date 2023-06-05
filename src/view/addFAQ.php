@@ -26,6 +26,7 @@
     else
         echo '<h1>Ajouter une nouvelle question</h1>';
 ?>
+<hr>
 
 <form action="add" method="POST">
     <?php
@@ -33,9 +34,12 @@
         if(!is_null($faq))
             echo "<input type=hidden name=id value={$faq->getId()}>";
     ?>
-    <input type="text" name="question" placeholder="Question" <?php if (!is_null($faq)) echo "value={$faq->getQuestion()}"; ?> required>
-    <textarea name="answer" placeholder="Réponse" rows="5" required><?php if (!is_null($faq)) echo "{$faq->getAnswer()}"; ?></textarea>
-    <button type="submit">Valider</button>
+    <input type="text" name="question" placeholder="Question" <?php if (!is_null($faq)) echo "value='{$faq->getQuestion(ENT_QUOTES)}'"; ?> required>
+    <textarea name="answer" placeholder="Réponse" rows="5" required><?php if (!is_null($faq)) echo "{$faq->getAnswer(ENT_QUOTES)}"; ?></textarea>
+    <div id="submit-button">
+        <button type="submit">Valider</button>
+    </div>
+
 </form>
 </div>
 <?php include('src/view/footer.php'); ?>
