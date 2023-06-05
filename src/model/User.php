@@ -135,9 +135,32 @@ class User
             if (!empty($usersArray))
                 return $usersArray[0];
         } catch (PDOException $e) {
-            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            error_log($e->getMessage());
         }
         return null;
+    }
+
+    /**
+     * Fetches {@see User}s from the database having the specified permission level.
+     * @param int $permissionLevel The permission level to match against.
+     * @return array An array containing all the {@see User}s found.
+     */
+    public static function fetchFromPermissionLevel(int $permissionLevel): array
+    {
+        $query = 'SELECT * FROM USERS WHERE permissionLevel = :permissionLevel;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('permissionLevel', $permissionLevel);
+
+        try {
+            $preparedStatement->execute();
+            $usersArray = $preparedStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+
+            if (!empty($usersArray))
+                return $usersArray;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+        return array();
     }
 
     /**
@@ -160,7 +183,7 @@ class User
             $preparedStatement->execute();
         }
         catch (PDOException $e) {
-            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            error_log($e->getMessage());
             return false;
         }
         return true;

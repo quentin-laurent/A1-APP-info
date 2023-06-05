@@ -15,6 +15,7 @@ require_once('src/model/Product.php');
 require_once('src/controller/DataController.php');
 require_once('src/model/Metric.php');
 require_once('src/controller/MetricController.php');
+require_once('src/controller/ContactController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -155,6 +156,14 @@ else if($uri === '/'.ROOT_URI.'index.php/mentionsLegales' && $method === 'GET') 
 // GET endpoint used to display the FAQ page
 else if($uri === '/'.ROOT_URI.'index.php/faq' && $method === 'GET') {
     require('src/view/faq.php');
+}
+// GET endpoint used to display the contact page
+else if($uri === '/'.ROOT_URI.'index.php/contact' && $method === 'GET') {
+    ContactController::displayContactPage();
+}
+// POST endpoint used to send the message created using the contact form
+else if($uri === '/'.ROOT_URI.'index.php/contact' && $method === 'POST') {
+    ContactController::sendMessage();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

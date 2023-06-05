@@ -13,7 +13,7 @@ $rootURL = "http://$hostname/" . ROOT_URI . 'index.php';
         <a class="link" href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/mentionsLegales' ?>>Mentions légales</a>
         <a class="link" href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/cgu' ?>>CGU</a>
         <a class="link" href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/faq' ?>>FAQ</a>
-        <a class="link" href="#">Contact</a>
+        <a class="link" href=<?php echo"http://$hostname/" . ROOT_URI . 'index.php/contact' ?>>Contact</a>
     </div>
     <div></div>
 </footer>
