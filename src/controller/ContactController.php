@@ -44,8 +44,6 @@ class ContactController
     {
         $headers = "From: contact@portan.fr";
 
-        $mail = PHPMailer();
-
         return mail($recipient, $subject, $message, $headers);
     }
 }
