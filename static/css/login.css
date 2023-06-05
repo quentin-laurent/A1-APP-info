@@ -2,7 +2,7 @@
 
 body {
     overflow-x: hidden;
-    min-height: 140vh;
+    min-height: 145vh;
     display: flex;
     flex-direction: column;
 }
@@ -32,7 +32,7 @@ header {
 }
 
 h1 {
-    font-family: Helvetica, serif;
+    font-family: Poppins, 'sans-serif';
     font-size: 30px;
     color: #1B998B;
 }
@@ -49,7 +49,7 @@ h1 {
     padding-top: 30%;
     font-size: 80px;
     font-weight: 900;
-    font-family: "Century Gothic";
+    font-family: Poppins, 'sans-serif';
 }
 
 #page p {
@@ -63,7 +63,7 @@ h1 {
 }
 
 #hCreateAccount {
-    margin-top: -200px;
+    margin-top: -220px;
     visibility: hidden;
 }
 
@@ -138,8 +138,8 @@ input {
 #error-message {
     color: red;
     font-weight: bold;
-    font-family: monospace;
-    font-size: small;
+    font-family: Poppins, 'sans-serif';
+    font-size: medium !important;
     text-align: center;
 }
 
