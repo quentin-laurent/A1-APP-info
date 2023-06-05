@@ -144,6 +144,10 @@ else if($uri === '/'.ROOT_URI.'index.php/data/fetchLatestMetrics' && $method ===
 else if($uri === '/'.ROOT_URI.'index.php/data/inject' && $method === 'POST') {
     MetricController::injectMetric();
 }
+// GET endpoint used to display the CGU page
+else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {
+    require('src/view/cgu.php');
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');

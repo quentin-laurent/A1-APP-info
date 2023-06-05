@@ -10,7 +10,7 @@ $imgDirectory = "http://$hostname/" . ROOT_URI . '/static/img/';
     </div>
     <div id="footer-links">
         <a class="link" href="#">Mentions légales</a>
-        <a class="link" href="#">CGU</a>
+        <a class="link" href="./cgu">CGU</a>
         <a class="link" href="#">FAQ</a>
         <a class="link" href="#">Contact</a>
     </div>
