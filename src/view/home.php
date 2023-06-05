@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PortAn / Home</title>
+  <title>PortAn / Accueil</title>
   <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
   <link rel="stylesheet" href="../static/css/navbar.css">
   <link rel="stylesheet" href="../static/css/footer.css">
@@ -61,7 +61,7 @@
             <div class="ZONE2">
                 <div class="ZONE2-TOP-HALF">
                     <div class="ZONE2-REC1">
-                        <h1 id="BLOC-ABOUT">About us</h1>
+                        <h1 id="BLOC-ABOUT">A propos de nous</h1>
                     </div>
 
                     <div class="ZONE2-REC2">
@@ -73,17 +73,12 @@
                     <div class="ZONE2-REC3"></div>
                     <div class="ZONE2-REC4">
                         <p id="BLOC-ZONE2-TEXT">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi felis, blandit sit amet hendrerit quis, condimentum et erat. 
-                            Nunc nec consectetur ex. Proin in semper tellus. Donec pretium est diam, a sagittis lectus ullamcorper eget. Ut faucibus in felis vitae 
-                            varius. Sed efficitur metus ac mi ultrices, in vestibulum nibh pellentesque. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                            Proin fermentum libero velit, ornare hendrerit nunc blandit id. Sed arcu justo, vestibulum sit amet erat nec, 
-                            tincidunt ornare purus. Mauris lobortis nisl vel tellus ultricies, a suscipit orci dignissim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi felis, blandit sit amet hendrerit quis, condimentum et erat. 
-                            Nunc nec consectetur ex. Proin in semper tellus. Donec pretium est diam, a sagittis lectus ullamcorper eget. 
+                            Spécialisée dans l'équipement sportif, l'entreprise OnTrack a développé l'appareil PortAn ainsi que ce site web pour le compte de la société Infinite Measures.
                         </p>
                     </div>
 
                     <div class="ZONE2-REC5">
-                         <h1 id="BLOC-TEAM">Team</h1>
+                         <h1 id="BLOC-TEAM">Notre équipe</h1>
                     </div>
                 </div>
             </div>
@@ -91,7 +86,7 @@
             <div class="ZONE3">
                 <div class="ZONE3-RIGHT-HALF">
                     <div class="ZONE3-RIGHT-TOP-HALF">
-                        <h1 id="BLOC-PRODUCT">Product</h1>
+                        <h1 id="BLOC-PRODUCT">Notre produit</h1>
                     </div>
 
                     <div class="ZONE3-RIGHT-BOTTOM-HALF">
@@ -101,11 +96,7 @@
 
                         <div class="ZONE3-BOTTOM-HALF-REC2">
                             <p id="BLOC-ZONE3-TEXT">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi felis, blandit sit amet hendrerit quis, condimentum et erat. 
-                                Nunc nec consectetur ex. Proin in semper tellus. Donec pretium est diam, a sagittis lectus ullamcorper eget. Ut faucibus in felis vitae 
-                                varius. Sed efficitur metus ac mi ultrices, in vestibulum nibh pellentesque. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                                Proin fermentum libero velit, ornare hendrerit nunc blandit id. Sed arcu justo, vestibulum sit amet erat nec, 
-                                tincidunt ornare purus. 
+                                Le dispositif PortAn est un boîtier qui collecte des données environnementales et physiologiques afin de fournir des renseignements sur la santé et l'environnement de la personne qui en est équipée. Il s'agit d'un dispositif dont l'usage est à destination des sportifs.
                             </p>
                         </div>
                     </div>
@@ -124,7 +115,7 @@
             -->
                 <div class="ZONE4-TOP-HALF">
                     <div class="ZONE4-REC1">
-                        <h1 id="BLOC-Technology">Technology</h1>
+                        <h1 id="BLOC-Technology">Technologie</h1>
                     </div>
 
                     <div class="ZONE4-REC2">
