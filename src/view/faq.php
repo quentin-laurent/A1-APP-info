@@ -12,24 +12,27 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
-<h1>FAQ</h1>
+<div id="page-wrapper">
+    <h1>Foire aux questions (FAQ)</h1>
+    <hr>
 
-<table>
-    <tr>
-        <th>Question</th>
-        <th>Réponse</th>
-    </tr>
     <?php
-    foreach ($faqs as $faq)
-    {
-        echo"
-            <tr>
-                <td>{$faq->getQuestion()}</td>
-                <td>{$faq->getAnswer()}</td>
-            </tr>
+        foreach($faqs as $faq)
+        {
+            echo "
+            <div id=faq-wrapper>
+                <div class=faq>
+                    <div class=question-wrapper>
+                        <p class=question>{$faq->getQuestion(ENT_QUOTES)}</p>
+                    </div>
+                    <div class=answer-wrapper>
+                        <p class=answer>{$faq->getAnswer(ENT_QUOTES)}</p>
+                    </div>
+                </div>
+            </div>
             ";
-    }
+        }
     ?>
-</table>
+</div>
 </body>
 </html>

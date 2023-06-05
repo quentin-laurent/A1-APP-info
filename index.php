@@ -152,6 +152,10 @@ else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {
 else if($uri === '/'.ROOT_URI.'index.php/mentionsLegales' && $method === 'GET') {
     require('src/view/mentionsLegales.php');
 }
+// GET endpoint used to display the FAQ page
+else if($uri === '/'.ROOT_URI.'index.php/faq' && $method === 'GET') {
+    require('src/view/faq.php');
+}
 else {
     $hostname = $_SERVER['HTTP_HOST'];
     header("Location: http://$hostname/".ROOT_URI.'index.php/home');
