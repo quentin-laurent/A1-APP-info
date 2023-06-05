@@ -17,7 +17,7 @@ require_once('src/model/Metric.php');
 require_once('src/controller/MetricController.php');
 require_once('src/controller/ContactController.php');
 
-const ROOT_URI = 'portan/';
+const ROOT_URI = '';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];

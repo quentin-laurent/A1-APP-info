@@ -258,7 +258,7 @@ $(document).ready(function () {
     var intervalId = window.setInterval(function(){
 
         if(checkboxUpdate.checked) {
-            injectRandomData();
+            //injectRandomData();
             fetchLatestMetrics()
         }
     }, 1000);
