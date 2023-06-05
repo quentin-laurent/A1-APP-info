@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>PortAn / Ticket n° <?php echo $ticket->getId() ?></title>
     <link rel="stylesheet" href="../../../static/css/navbar.css">
+    <link rel="stylesheet" href="../../../static/css/footer.css">
     <link rel="icon" type="image/x-icon" href="../../../static/img/infinitemeasures-logo.png">
     <script src="../../../static/js/navbar.js"></script>
     <link rel="stylesheet" href="../../../static/css/ticketManagementDetail.css">
@@ -12,6 +13,7 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
+<div id="page-wrapper">
 <h1>Détail du ticket n°<?php echo $ticket->getId(); ?></h1>
 <hr>
 <?php $author = User::fetchFromEmail($ticket->getAuthorEmail()); ?>
@@ -58,5 +60,7 @@
         </div>
     </div>
 </div>
+</div>
+<?php include('src/view/footer.php'); ?>
 </body>
 </html>

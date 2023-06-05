@@ -47,7 +47,6 @@ class Tag
      */
     public static function fetchFromName(string $name): ?Tag
     {
-        error_log("trying to fetch tag with name: $name");
         $query = 'SELECT * FROM TAG WHERE name = :name;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('name', $name);

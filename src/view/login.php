@@ -3,6 +3,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>PortAn / Log In</title>
+    <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="stylesheet" href="../static/css/login.css">
     <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
     <script type="text/javascript">
@@ -124,5 +125,6 @@
     </form>
 </div>
 </div>
+<?php include('src/view/footer.php'); ?>
 </body>
 </html>

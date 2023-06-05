@@ -1,0 +1,83 @@
+body {
+    font-family: Poppins, 'sans-serif';
+}
+
+h1 {
+    text-align: left;
+    margin: 2% auto 1% 2%;
+    color: #1B998B;
+}
+
+body > hr {
+    margin: 0 2% 1% 2%;
+}
+
+#success-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
+    text-align: center;
+    color: #155724;
+    background-color: #d4edda;
+    border: solid 1px #c3e6cb;
+    border-radius: .25rem;
+}
+
+#error-message {
+    margin: 1% auto 1% auto;
+    padding: 1%;
+    width: 75%;
+    text-align: center;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: solid 1px #f5c6cb;;
+    border-radius: .25rem;
+}
+
+h2 {
+    font-size: xxx-large;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+#radio-buttons, #options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-input-group {
+    margin-bottom: 1%;
+}
+
+.radio-input-group {
+    margin-right: 2%;
+}
+
+.green {
+    color: #1B998B;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto 2% auto 2%;
+}
+
+.sensor-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.sensor-image {
+    width: 64px;
+    height: auto;
+}
+
+.sensor-title {
+    margin-left: 1%;
+}

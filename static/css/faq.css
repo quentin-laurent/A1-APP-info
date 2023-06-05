@@ -1,21 +1,54 @@
-h1 {
-    text-align: center;
+body {
     font-family: Poppins, 'sans-serif';
-    margin-top: 2%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-table {
-    border: solid 1px black;
-    border-collapse: collapse;
-    width: 75%;
-    margin: 5% auto auto;
+#page-wrapper {
+    flex-grow: 1;
 }
 
-th, td {
-    border: solid 1px black;
-    border-collapse: collapse;
-    padding: 1%;
-    text-align: center;
-    max-width: 100%;
-    white-space: nowrap;
+h1 {
+    text-align: left;
+    margin: 2% auto 1% 2%;
+    color: #1B998B;
+}
+
+#page-wrapper > hr {
+    margin: 0 2% 2% 2%;
+}
+
+.faq {
+    margin-bottom: 4%;
+}
+
+.question-wrapper {
+    width: 50%;
+    margin: auto auto 1% 2%;
+}
+
+.question {
+    font-size: Larger;
+    padding: 2%;
+    border-radius: 30px;
+    color: white;
+    background-color: #1B998B;
+    word-break: break-word;
+    white-space: normal;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.answer-wrapper {
+    width: 50%;
+    margin: auto 2% auto 48%;
+}
+
+.answer {
+    padding: 2%;
+    border-radius: 30px;
+    background-color: #DECDF5;
+    word-break: break-word;
+    white-space: normal;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
 }

@@ -24,14 +24,14 @@ class FAQ
         return htmlspecialchars($this->id);
     }
 
-    public function getQuestion()
+    public function getQuestion($flags=ENT_COMPAT)
     {
-        return htmlspecialchars($this->question);
+        return htmlspecialchars($this->question, $flags);
     }
 
-    public function getAnswer()
+    public function getAnswer($flags=ENT_COMPAT)
     {
-        return htmlspecialchars($this->answer);
+        return htmlspecialchars($this->answer, $flags);
     }
 
     public function getAuthorEmail()

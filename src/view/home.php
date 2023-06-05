@@ -5,6 +5,7 @@
   <title>PortAn / Home</title>
   <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
   <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/footer.css">
   <script src="../static/js/navbar.js"></script>
   <link rel="stylesheet" href="../static/css/home.css">
 </head>
@@ -136,6 +137,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
+    <?php include('src/view/footer.php'); ?>
 </body>
 </html>

@@ -10,6 +10,12 @@ require_once('src/model/Ticket.php');
 require_once('src/model/Tag.php');
 require_once('src/controller/TicketController.php');
 require_once('src/controller/TicketManagementController.php');
+require_once('src/controller/UserProfileController.php');
+require_once('src/model/Product.php');
+require_once('src/controller/DataController.php');
+require_once('src/model/Metric.php');
+require_once('src/controller/MetricController.php');
+require_once('src/controller/ContactController.php');
 
 const ROOT_URI = 'portan/';
 
@@ -114,6 +120,50 @@ else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/reopen' && $method =
 // GET endpoint to display the detail of a Ticket (management only)
 else if($uri === '/'.ROOT_URI.'index.php/backoffice/tickets/detail' && $method === 'GET') {
     TicketManagementController::displayTicketDetailPage();
+}
+// GET endpoint to display the user profile page
+else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'GET') {
+    UserProfileController::displayUserProfilePage();
+}
+// POST endpoint used to update a User
+else if($uri === '/'.ROOT_URI.'index.php/profile' && $method === 'POST') {
+    UserProfileController::updateUser();
+}
+// GET endpoint used to display the data page
+else if($uri === '/'.ROOT_URI.'index.php/data' && $method === 'GET') {
+    DataController::displayDataPage();
+}
+// POST endpoint used to fetch metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/fetchMetrics' && $method === 'POST') {
+    MetricController::fetchMetrics();
+}
+// POST endpoint used to fetch the latest metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/fetchLatestMetrics' && $method === 'POST') {
+    MetricController::fetchLatestMetrics();
+}
+// TEMPORARY POST endpoint used to inject metrics
+else if($uri === '/'.ROOT_URI.'index.php/data/inject' && $method === 'POST') {
+    MetricController::injectMetric();
+}
+// GET endpoint used to display the CGU page
+else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {
+    require('src/view/cgu.php');
+}
+// GET endpoint used to display the TOS page
+else if($uri === '/'.ROOT_URI.'index.php/mentionsLegales' && $method === 'GET') {
+    require('src/view/mentionsLegales.php');
+}
+// GET endpoint used to display the FAQ page
+else if($uri === '/'.ROOT_URI.'index.php/faq' && $method === 'GET') {
+    require('src/view/faq.php');
+}
+// GET endpoint used to display the contact page
+else if($uri === '/'.ROOT_URI.'index.php/contact' && $method === 'GET') {
+    ContactController::displayContactPage();
+}
+// POST endpoint used to send the message created using the contact form
+else if($uri === '/'.ROOT_URI.'index.php/contact' && $method === 'POST') {
+    ContactController::sendMessage();
 }
 else {
     $hostname = $_SERVER['HTTP_HOST'];

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>PortAn / Tickets</title>
     <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="icon" type="image/x-icon" href="../static/img/infinitemeasures-logo.png">
     <script src="../static/js/navbar.js"></script>
     <link rel="stylesheet" href="../static/css/tickets.css">
@@ -12,6 +13,7 @@
 <?php include('src/view/navbar.php'); ?>
 
 <body>
+<div id="page-wrapper">
 <h1>Mes tickets</h1>
 <hr>
 <div id="add-ticket"><a href="tickets/add   "><button type="button">Créer un nouveau ticket</button></a></div>
@@ -73,5 +75,8 @@ if(isset($_GET['error']) && isset($_SESSION['errorMessage'])) {
         }
     ?>
 </div>
+</div>
+<?php include('src/view/footer.php'); ?>
+
 </body>
 </html>

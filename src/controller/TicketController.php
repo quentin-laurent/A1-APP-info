@@ -42,7 +42,7 @@ class TicketController
             require('src/view/403.html');
             exit;
         }
-        else if(!$ticket->isOpen())
+        else if(isset($ticket) && !$ticket->isOpen())
         {
             header("HTTP/1.1 403 Forbidden");
             require('src/view/403.html');
@@ -72,7 +72,7 @@ class TicketController
             return;
         }
 
-        $success = Ticket::add(new Ticket($_POST['title'], $_POST['description'], true, $_SESSION['email'], NULL), $_POST['tag-type'], $_POST['tag-priority']);
+        $success = Ticket::add(new Ticket($_POST['title'], $_POST['description'], true, $_SESSION['email'], $_SESSION['email'], NULL), $_POST['tag-type'], $_POST['tag-priority']);
 
         $hostname = $_SERVER['HTTP_HOST'];
         if($success)

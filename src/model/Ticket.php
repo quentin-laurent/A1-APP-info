@@ -147,7 +147,6 @@ class Ticket
      */
     public static function add(Ticket $ticket, $tagType, $tagPriority): bool
     {
-        $ticketId = Ticket::getHighestId() + 1;
         $query = 'INSERT INTO TICKET(title, description, authorEmail) VALUES(:title, :description, :authorEmail);';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('title', $ticket->getTitle());
@@ -158,10 +157,11 @@ class Ticket
             $preparedStatement->execute();
         }
         catch (PDOException $e) {
-            echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+            error_log($e->getMessage());
             return false;
         }
 
+        $ticketId = Ticket::getHighestId();
 
         $tag1 = Tag::fetchFromName($tagType);
         $tag2 = Tag::fetchFromName($tagPriority);
@@ -176,7 +176,7 @@ class Ticket
                 $preparedStatement->execute();
             }
             catch (PDOException $e) {
-                echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+                error_log($e->getMessage());
                 return false;
             }
         }
@@ -191,7 +191,7 @@ class Ticket
                 $preparedStatement->execute();
             }
             catch (PDOException $e) {
-                echo "<strong style='color: red'> Error: " . $e->getMessage() . "<br></strong>";
+                error_log($e->getMessage());
                 return false;
             }
         }
@@ -309,7 +309,7 @@ class Ticket
         $result = Connection::getPDO()->query($query);
         $res = $result->fetch();
 
-        if(!is_null($res))
+        if(!empty($res) && !is_null($res[0]))
             return $res[0];
         return 0;
     }
@@ -356,8 +356,10 @@ class Ticket
     {
         $query = 'UPDATE TICKET SET isOpen = :isOpen, isResolved = :isResolved WHERE id = :id;';
         $preparedStatement = Connection::getPDO()->prepare($query);
-        $preparedStatement->bindParam('isOpen', $this->getIsOpen());
-        $preparedStatement->bindParam('isResolved', $this->getIsResolved());
+        $isOpen = $this->getIsOpen() ? 1 : 0;
+        $preparedStatement->bindParam('isOpen', $isOpen);
+        $isResolved = $this->getIsResolved() ? 1 : 0;
+        $preparedStatement->bindParam('isResolved', $isResolved);
         $preparedStatement->bindParam('id', $this->getId());
 
         try {

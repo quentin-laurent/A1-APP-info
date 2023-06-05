@@ -1,0 +1,32 @@
+footer {
+    font-family: Poppins, 'sans-serif';
+    background-color: #242424;
+    padding: 1%;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2%;
+}
+
+#footer-links {
+    text-align: center;
+}
+
+.socials img {
+    width: 24px;
+    height: auto;
+    margin-right: 2%;
+}
+
+.link {
+    margin: auto 2% auto 2%;
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    font-size: small;
+}
+
+.link:hover {
+    color: #1B998B;
+    transition: all 0.3s ease 0s;
+}
