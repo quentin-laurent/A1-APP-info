@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PortAn / User management</title>
+    <title>PortAn / Gestion utilisateurs</title>
     <link rel="stylesheet" href="../../static/css/navbar.css">
     <link rel="stylesheet" href="../../static/css/footer.css">
     <link rel="icon" type="image/x-icon" href="../../static/img/infinitemeasures-logo.png">
