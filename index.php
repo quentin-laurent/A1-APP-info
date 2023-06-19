@@ -142,10 +142,15 @@ else if($uri === '/'.ROOT_URI.'index.php/data/fetchMetrics' && $method === 'POST
 else if($uri === '/'.ROOT_URI.'index.php/data/fetchLatestMetrics' && $method === 'POST') {
     MetricController::fetchLatestMetrics();
 }
-// TEMPORARY POST endpoint used to inject metrics
+// POST endpoint used to update the metrics dynamically
 else if($uri === '/'.ROOT_URI.'index.php/data/update' && $method === 'POST') {
     //MetricController::injectMetric();
     MetricController::updateMetrics();
+}
+// POST endpoint used to update the LED status
+else if($uri === '/'.ROOT_URI.'index.php/data/updateLedStatus' && $method === 'POST') {
+    //MetricController::injectMetric();
+    DataController::updateLedStatus();
 }
 // GET endpoint used to display the CGU page
 else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {

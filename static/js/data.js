@@ -276,3 +276,29 @@ $(document).ready(function () {
         }
     }, 1000);
 })
+
+// Turn the LED ON/OFF if the checkbox is checked/unchecked
+checkboxUpdate.addEventListener('click', event => {
+    if(checkboxUpdate.checked) {
+        $.ajax({
+            url:"data/updateLedStatus",
+            type: "post",
+            dataType: 'json',
+            data: {ledStatus: 'on'},
+            error:function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+    }
+    else if (!checkboxUpdate.checked) {
+        $.ajax({
+            url:"data/updateLedStatus",
+            type: "post",
+            dataType: 'json',
+            data: {ledStatus: 'off'},
+            error:function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+    }
+})
