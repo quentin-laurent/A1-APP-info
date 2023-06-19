@@ -26,6 +26,7 @@ class DataController
         else if(is_null($product))
             $_SESSION['errorMessage'] = "Aucun appareil trouvé avec l'identifiant {$user->getProductId()}.";
 
+        MetricController::updateMetrics();
         require('src/view/data.php');
     }
 }

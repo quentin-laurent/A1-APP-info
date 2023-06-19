@@ -35,7 +35,7 @@ class UserProfileController
         }
         $hostname = $_SERVER['HTTP_HOST'];
         $user = User::fetchFromEmail($_SESSION['email']);
-        ($_POST['portanId'] === '') ? $portanId = null : $portanId = (int) $_POST['portanId'];
+        ($_POST['portanId'] === '') ? $portanId = null : $portanId = $_POST['portanId'];
         $success = $user->update($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['birthday'], $_POST['phoneNumber'], $portanId);
 
         $currentPassword = $_POST['currentPassword'];

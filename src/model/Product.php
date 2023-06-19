@@ -3,11 +3,11 @@
 class Product
 {
     // Attributes
-    private int $id;
+    private string $id;
     private string $name;
 
     // Constructor
-    public function __construct(int $id, string $name)
+    public function __construct(string $id, string $name)
     {
         $this->id = $id;
         $this->name = $name;
@@ -42,10 +42,10 @@ class Product
 
     /**
      * Fetches a {@see Product} using its id.
-     * @param ?int $id The id of the {@see Product}.
+     * @param ?string $id The id of the {@see Product}.
      * @return ?Product The corresponding {@see Product} if it exists, null otherwise.
      */
-    public static function fetchFromId(?int $id): ?Product
+    public static function fetchFromId(?string $id): ?Product
     {
         $query = 'SELECT * FROM PRODUCT WHERE id = :id;';
         $preparedStatement = Connection::getPDO()->prepare($query);

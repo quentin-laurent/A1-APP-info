@@ -254,11 +254,24 @@ function injectRandomData() {
     });
 }
 
+function updateMetrics() {
+    $.ajax({
+        url:"data/update",
+        type: "post",
+        dataType: 'json',
+        data: {},
+        error:function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR + '\n' + textStatus + '\n' + errorThrown);
+        }
+    });
+}
+
 $(document).ready(function () {
     var intervalId = window.setInterval(function(){
 
         if(checkboxUpdate.checked) {
-            injectRandomData();
+            //injectRandomData();
+            updateMetrics();
             fetchLatestMetrics()
         }
     }, 1000);

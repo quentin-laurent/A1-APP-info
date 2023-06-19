@@ -16,6 +16,7 @@ require_once('src/controller/DataController.php');
 require_once('src/model/Metric.php');
 require_once('src/controller/MetricController.php');
 require_once('src/controller/ContactController.php');
+require_once('src/model/Frame.php');
 
 const ROOT_URI = 'portan/';
 
@@ -142,8 +143,9 @@ else if($uri === '/'.ROOT_URI.'index.php/data/fetchLatestMetrics' && $method ===
     MetricController::fetchLatestMetrics();
 }
 // TEMPORARY POST endpoint used to inject metrics
-else if($uri === '/'.ROOT_URI.'index.php/data/inject' && $method === 'POST') {
-    MetricController::injectMetric();
+else if($uri === '/'.ROOT_URI.'index.php/data/update' && $method === 'POST') {
+    //MetricController::injectMetric();
+    MetricController::updateMetrics();
 }
 // GET endpoint used to display the CGU page
 else if($uri === '/'.ROOT_URI.'index.php/cgu' && $method === 'GET') {

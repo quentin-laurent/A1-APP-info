@@ -16,10 +16,10 @@ class User
     private ?string $lastVisit;
     private int $nbConnections;
     private bool $banned;
-    private ?int $productId;
+    private ?string $productId;
 
     // Constructor
-    public function __construct(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, string $passwordHash, ?string $profilePicturePath=null, int $permissionLevel=USER, ?string $lastVisit=null, int $nbConnections=0, bool $banned=false, ?int $productId=null)
+    public function __construct(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, string $passwordHash, ?string $profilePicturePath=null, int $permissionLevel=USER, ?string $lastVisit=null, int $nbConnections=0, bool $banned=false, ?string $productId=null)
     {
         $this->email = $email;
         $this->firstname = $firstname;
@@ -97,7 +97,7 @@ class User
         return htmlspecialchars($this->banned);
     }
     
-    public function getProductId(): ?int
+    public function getProductId(): ?string
     {
         return $this->productId;
     }
@@ -198,7 +198,7 @@ class User
      * @param ?string $phoneNumber The new phone number.
      * @return bool True if this {@see User} has been update, false otherwise.
      */
-    public function update(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, ?int $productId): bool
+    public function update(string $email, string $firstname, string $lastname, string $birthday, ?string $phoneNumber, ?string $productId): bool
     {
         $oldEmail = $this->getEmail();
         $this->email = $email;

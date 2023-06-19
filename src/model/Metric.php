@@ -15,10 +15,10 @@ class Metric
     private string $metricType;
     private float $metricValue;
     private string $metricDate;
-    private int $productId;
+    private string $productId;
 
     // Constructor
-    public function __construct(string $metricType, float $metricValue, string $metricDate, int $productId)
+    public function __construct(string $metricType, float $metricValue, string $metricDate, string $productId)
     {
         $this->id = NULL;
         $this->metricType = $metricType;
@@ -249,10 +249,14 @@ class Metric
         $metricId = Metric::getHighestId() + 1;
         $query = 'INSERT INTO METRIC(metrictype, metricvalue, metricdate, productid) VALUES(:metricType, :metricValue, :metricDate, :productId);';
         $preparedStatement = Connection::getPDO()->prepare($query);
-        $preparedStatement->bindParam('metricType', $metric->getMetricType());
-        $preparedStatement->bindParam('metricValue', $metric->getMetricValue());
-        $preparedStatement->bindParam('metricDate', $metric->getMetricDate());
-        $preparedStatement->bindParam('productId', $metric->getProductId());
+        $metricType = $metric->getMetricType();
+        $metricValue = $metric->getMetricValue();
+        $meticDate = $metric->getMetricDate();
+        $productId = $metric->getProductId();
+        $preparedStatement->bindParam('metricType', $metricType);
+        $preparedStatement->bindParam('metricValue', $metricValue);
+        $preparedStatement->bindParam('metricDate', $meticDate);
+        $preparedStatement->bindParam('productId', $productId);
 
         try {
             $preparedStatement->execute();
@@ -260,6 +264,7 @@ class Metric
             error_log($e->getMessage());
             return false;
         }
+        return true;
     }
 
     /**
@@ -272,9 +277,33 @@ class Metric
         $result = Connection::getPDO()->query($query);
         $res = $result->fetch();
 
-        if(!is_null($res))
+        if(!is_null($res) && !is_null($res[0]))
             return $res[0];
         return 0;
+    }
+
+    /**
+     * Fetches the most recent {@see Metric} date from the specified type.
+     * @param string $metricType The type of the {@see Metric} to fetch.
+     * @return string The most recent {@see Metric} date found, 0000-00-00 00:00:00 otherwise
+     */
+    public static function fetchLatestDateFromType(string $metricType): string
+    {
+        $query = 'SELECT MAX(metricDate) FROM METRIC where metricType = :metricType;';
+        $preparedStatement = Connection::getPDO()->prepare($query);
+        $preparedStatement->bindParam('metricType', $metricType);
+
+        try {
+            $preparedStatement->execute();
+            $res = $preparedStatement->fetch();
+            if(!is_null($res) && !is_null($res[0]))
+                return $res[0];
+            return '0000-00-00 00:00:00';
+        }
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+        return '0000-00-00 00:00:00';
     }
 
     public function __toString(): string
