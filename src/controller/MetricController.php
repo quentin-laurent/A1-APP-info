@@ -11,8 +11,9 @@ class MetricController
     public static function fetchMetrics(): void
     {
         $metricType = $_POST['metricType'];
+        $productId = User::fetchFromEmail($_SESSION['email'])->getProductId();
         $scale = $_POST['scale'];
-        $metrics = Metric::fetchFromType($_POST['metricType'], $scale);
+        $metrics = Metric::fetchFromType($_POST['metricType'], $productId, $scale);
 
         if($scale != 'seconds')
             $metrics = Metric::scale($metrics, $scale);

@@ -77,17 +77,19 @@ class Metric
     /**
      * Fetches {@see Metric}s with the specified type.
      * @param string $metricType The type of {@see Metric} to fetch.
+     * @param string $productId The ID of the {@see Product} containing the {@see Metric}s.
      * @param string $scale (optional) The scale (e.g. minutes, hours etc.).
      * @return array An array containing the fetched {@see Metric}s.
      */
-    public static function fetchFromType(string $metricType, string $scale='seconds'): array
+    public static function fetchFromType(string $metricType, string $productId, string $scale='seconds'): array
     {
         if($scale === 'seconds')
-            $query = 'SELECT * FROM METRIC WHERE metricType = :metricType ORDER BY metricDate DESC LIMIT 60;';
+            $query = 'SELECT * FROM METRIC WHERE metricType = :metricType AND productId = :productId ORDER BY metricDate DESC LIMIT 60;';
         else
-            $query = 'SELECT * FROM METRIC WHERE metricType = :metricType ORDER BY metricDate DESC;';
+            $query = 'SELECT * FROM METRIC WHERE metricType = :metricType AND productId = :productId ORDER BY metricDate DESC;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $preparedStatement->bindParam('metricType', $metricType);
+        $preparedStatement->bindParam('productId', $productId);
 
         try {
             $preparedStatement->execute();
@@ -144,10 +146,12 @@ class Metric
 
         error_log("Getting the average value for metrics between $startDate and $endDate.");
 
-        $query = 'SELECT AVG(metricValue) FROM METRIC WHERE metricType = :metricType AND metricDate >= :startDate AND metricDate <= :endDate;';
+        $query = 'SELECT AVG(metricValue) FROM METRIC WHERE metricType = :metricType AND productId = :productId AND metricDate >= :startDate AND metricDate <= :endDate;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $metricType = $metric->getMetricType();
+        $productId = $metric->getProductId();
         $preparedStatement->bindParam('metricType', $metricType);
+        $preparedStatement->bindParam('productId', $productId);
         $preparedStatement->bindParam('startDate', $startDate);
         $preparedStatement->bindParam('endDate', $endDate);
 
@@ -198,10 +202,12 @@ class Metric
 
         error_log("Getting the average value for metrics between $startDate and $endDate.");
 
-        $query = 'SELECT AVG(metricValue) FROM METRIC WHERE metricType = :metricType AND metricDate >= :startDate AND metricDate <= :endDate;';
+        $query = 'SELECT AVG(metricValue) FROM METRIC WHERE metricType = :metricType AND productId = :productId AND metricDate >= :startDate AND metricDate <= :endDate;';
         $preparedStatement = Connection::getPDO()->prepare($query);
         $metricType = $metric->getMetricType();
+        $productId = $metric->getProductId();
         $preparedStatement->bindParam('metricType', $metricType);
+        $preparedStatement->bindParam('productId', $productId);
         $preparedStatement->bindParam('startDate', $startDate);
         $preparedStatement->bindParam('endDate', $endDate);
 
