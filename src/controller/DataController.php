@@ -34,10 +34,13 @@ class DataController
         $productId = User::fetchFromEmail($_SESSION['email'])->getProductId();
         $ledStatus = $_POST['ledStatus'];
 
-        if ($ledStatus === 'on')
-            $frame = '1007B2F010001000000';
-        else
-            $frame = '1007B2F010000000000';
+        if ($ledStatus === 'on') {
+            $frame = '17B7B25010001FF00';
+        }
+        else {
+            $frame = '17B7B25010000FF00';
+        }
+
 
         $url = "http://projets-tomcat.isep.fr:8080/appService/?ACTION=COMMAND&TEAM=$productId&TRAME=$frame";
         $curl = curl_init($url);
